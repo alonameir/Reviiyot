@@ -22,15 +22,17 @@ class Card {
 private:
   Shape shape;
 public:
-  virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
+    Card(Shape shape);
+    virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
   virtual ~Card();
-    char getShape();
+    Shape getShape();
 };
 
 class FigureCard : public Card {
 private:
 	Figure figure;
 public:
+    FigureCard(Shape shape, Figure figure);
 	virtual string toString() override;
 	char getFigure();
 };
