@@ -1,4 +1,4 @@
-
+/*
 #include "Deck.h"
 #include <iostream>
 #include "Card.h"
@@ -78,3 +78,4 @@ bool Deck:: isEmpty(){
         return true;
     return false;
 }
+*/
