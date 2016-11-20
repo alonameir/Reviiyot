@@ -5,7 +5,7 @@
 
 #include "Player.h"
 #include "Deck.h"
-
+#include <vector>
 using namespace std;
 
 class Game {

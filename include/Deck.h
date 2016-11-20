@@ -2,7 +2,7 @@
 #define DECK_H_
 
 #include <iostream>
-#include <List>
+#include <list>
 #include "Card.h"
 
 using namespace std;
