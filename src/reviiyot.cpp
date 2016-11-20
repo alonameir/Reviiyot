@@ -27,6 +27,8 @@ int main(int argc, char **argv) {
 	FigureCard* test=new FigureCard(Diamond,Jack);
 	cout  << (*test).toString() << endl;
 
+	NumericCard* testNum=new NumericCard(Spade, 1000000);
+	cout << (*testNum).toString() << endl;
 
 }
 

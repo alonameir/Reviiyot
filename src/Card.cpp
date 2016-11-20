@@ -6,24 +6,6 @@ using namespace std;
 
 Card::Card(Shape shape) : shape(shape) {}
 
-Card::Card(string s) {
-    if (s.at(0)=='D')
-        shape=Diamond;
-    else if (s.at(0)=='H')
-        shape=Heart;
-    else if (s.at(0)=='S')
-        shape=Spade;
-    else if (s.at(0)=='C')
-        shape=Club;
-}
-
-string Card::toString() {
-    string str;
-
-    return str;
-
-};
-
 Shape Card::getShape() {
     return shape;
 }
@@ -67,7 +49,27 @@ string FigureCard::toString() {
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
 
-NumericCard::NumericCard(string& s){
+int NumericCard::getNum() {
+    return number;
+}
 
-
+string NumericCard::toString() {
+    string str;
+    string str2;
+    switch (this->getShape()) {
+        case Club:
+            str = "C";
+            break;
+        case Diamond:
+            str= "D";
+            break;
+        case Heart:
+            str = "H";
+            break;
+        case Spade:
+            str = "S";
+            break;
+    }
+    str2= to_string(number);
+    return (str2).append(str);
 }

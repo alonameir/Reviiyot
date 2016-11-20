@@ -43,7 +43,6 @@ private:
 	int number;
 public:
     NumericCard(Shape shape, int number);
-    NumericCard(string& s);
 	virtual string toString() override;
 	int getNum();
 
