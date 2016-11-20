@@ -1,19 +1,30 @@
+
 #ifndef DECK_H_
 #define DECK_H_
 
+#include "Deck.h"
 #include <iostream>
-#include <list>
 #include "Card.h"
+#include <queue>
+#include <string>
 
 using namespace std;
 
 class Deck {
 private:
-	// Declare here the collection of "Card *" of the deck
+	int size;
+	queue <Card*> deck;
+	bool isFigure(string& someCard);
+
 public:
-	Card* fetchCard();   //Returns the top card of the deck and remove it rom the deck
-	int getNumberOfCards(); // Get the number of cards in the deck
-	string toString(); // Return the cards in top-to-bottom order in a single line, cards are separated by a space ex: "12S QD AS 3H"
+	Card* fetchCard();
+	Deck();
+	virtual ~Deck();
+	Deck::Deck(string& line, int n);
+	Deck::~Deck();
+	int getNumberOfCards();
+	string toString();
+	bool isEmpty();
 };
 
-#endif
+#endif /* DECK_H_ */
