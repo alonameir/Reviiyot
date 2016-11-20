@@ -1,38 +1,61 @@
-/*
-#include "Deck.h"
+
 #include <iostream>
-#include "Card.h"
-#include <queue>
+#include "../include/Card.h"
+#include  "../include/Deck.h"
+
 #include <string>
+#include <queue>
+
 using namespace std;
 
-
+/*
 Deck::Deck() {
     // TODO Auto-generated constructor stub
 
 }
+*/
 
-
-Deck::Deck(string& line, int n){
+Deck::Deck(string& line, int n) {
+    deck= new queue <Card*>;
+    size=0;
     string* temp=new string ("");
-    for (int i=0; i<line.length(); i=i+1){
-        char c= line.at(i);
-        if(c!=' '){
-            temp +=c;
-        }
-        if (c==' '){
+    for (int i=0; i<=line.size(); i=i+1){
+        if (i==line.size()){
             if (isFigure(*temp)){
-                FigureCard* toPut= bulidFigureCard(*temp);
-                deck.push(toPut);
+                FigureCard* toPut;
+                toPut = bulidFigureCard(*temp);
+                deck->push(toPut);
+                cout << (*toPut).toString()<<endl;
             }
             else{
-                NumericCard* toPut= bulidNumericCard(*temp);
+                NumericCard* toPut;
+                toPut=bulidNumericCard(*temp);
+                cout << (*toPut).toString()<<endl;
             }
-            temp->clear();
             size=size+1;
         }
+
+        else {
+            char c = line.at(i);
+            if (c != ' ') {
+                temp->push_back(c);
+            } else if (c == ' ') {
+                if (isFigure(*temp)) {
+                    FigureCard *toPut;
+                    toPut = bulidFigureCard(*temp);
+                    deck->push(toPut);
+                    cout << (*toPut).toString() << endl;
+                } else {
+                    NumericCard *toPut;
+                    toPut = bulidNumericCard(*temp);
+                    cout << (*toPut).toString() << endl;
+                }
+                temp->clear();
+                size = size + 1;
+            }
+        }
     }
-    if (size!=n)
+    if (size!=(n+3)*4)
         throw "Invalid number of card in deck";
 }
 
@@ -89,8 +112,8 @@ bool Deck::isFigure(string& someCard){
 }
 
 
-Card* Deck::fetchCard(){
-    if (isEmpty()==true)
+ Card* Deck::fetchCard(){
+    if (isEmpty())
         throw "Empty deck";
     Card* toFetch= deck.front();// i need to copy this one because pop will remove it.
     deck.pop();
@@ -101,15 +124,17 @@ Card* Deck::fetchCard(){
 //Returns the top card of the deck and remove it rom the deck
 
 string Deck:: toString(){
-    string toAns;
+    string* toAns;
     for (int i=size; i>0 ; i=i-1){
-        Card* temp= deck.front();// i need to copy this one because pop will remove it.
-        toAns& += (Card*)(temp.toString());
-        deck.pop();
-        deck.push(temp);
+        Card* temp= deck->front();// i need to copy this one because pop will remove it.
+        //toAns->append((*temp).toString());
+        //toAns+=((*temp).toString());
+        deck->pop();
+        deck->push(temp);
     }
     return toAns;
-}
+}*/
+/*
 Deck::~Deck(){
     while (size>0){
         deck.pop();
@@ -117,6 +142,7 @@ Deck::~Deck(){
     }
     delete size;
 }
+ */
 int Deck::getNumberOfCards(){
     return size;
 } // Get the number of cards in the deck
@@ -128,4 +154,3 @@ bool Deck:: isEmpty(){
         return true;
     return false;
 }
-*/

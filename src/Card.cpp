@@ -1,8 +1,9 @@
 using namespace std;
 
 #include <iostream>
-#include "../include/Card.h"
 #include <string>
+#include "../include/Card.h"
+
 
 Card::Card(Shape shape) : shape(shape) {}
 
