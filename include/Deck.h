@@ -25,6 +25,8 @@ public:
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();
+    FigureCard* bulidFigureCard(string& s);
+    NumericCard* bulidNumericCard(string& s);
 };
 
 #endif /* DECK_H_ */
