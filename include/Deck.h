@@ -15,15 +15,18 @@ private:
 	int size;
     queue <Card*> * deck;
 	bool isFigure(string& someCard);
-    FigureCard* bulidFigureCard(string& s);
+	FigureCard* bulidFigureCard(string& s);
     NumericCard* bulidNumericCard(string& s);
 
 public:
+
 	Card* fetchCard();
-	Deck(string& line, int n);
-	~Deck();
+	//Deck();
+    //virtual ~Deck();
+	Deck(string line, int n);
+	//Deck::~Deck();
 	int getNumberOfCards();
-	//string toString();
+	string toString();
 	bool isEmpty();
 
 };
