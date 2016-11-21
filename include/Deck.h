@@ -20,12 +20,10 @@ private:
 
 public:
 	Card* fetchCard();
-	//Deck();
-    //virtual ~Deck();
 	Deck(string& line, int n);
-	//Deck::~Deck();
+	~Deck();
 	int getNumberOfCards();
-	string toString();
+	//string toString();
 	bool isEmpty();
 
 };

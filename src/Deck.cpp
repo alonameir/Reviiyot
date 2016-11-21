@@ -4,6 +4,7 @@
 #include  "../include/Deck.h"
 
 #include <string>
+#include <cstring>
 #include <queue>
 
 using namespace std;
@@ -56,7 +57,7 @@ Deck::Deck(string& line, int n) {
         }
     }
     if (size!=(n+3)*4)
-        throw "Invalid number of card in deck";
+        throw new runtime_error("Invalid number of card in deck");
 }
 
 FigureCard* Deck:: bulidFigureCard(string& s){
@@ -115,39 +116,39 @@ bool Deck::isFigure(string& someCard){
  Card* Deck::fetchCard(){
     if (isEmpty())
         throw "Empty deck";
-    Card* toFetch= deck.front();// i need to copy this one because pop will remove it.
-    deck.pop();
+    Card* toFetch= deck->front();// i need to copy this one because pop will remove it.
+    deck->pop();
     size=size-1;
+     cout  << (*toFetch).toString() << endl;
     return toFetch;
 
 }
 //Returns the top card of the deck and remove it rom the deck
-
-string Deck:: toString(){
+/*
+string* Deck:: toString(){
     string* toAns;
     for (int i=size; i>0 ; i=i-1){
         Card* temp= deck->front();// i need to copy this one because pop will remove it.
-        //toAns->append((*temp).toString());
-        //toAns+=((*temp).toString());
+        strcat(toAns,(*temp).toString());
         deck->pop();
         deck->push(temp);
     }
     return toAns;
-}*/
-/*
+}
+*/
+
+
 Deck::~Deck(){
     while (size>0){
-        deck.pop();
+        deck->pop();
         size=size-1;
     }
-    delete size;
+    delete (size);
 }
  */
 int Deck::getNumberOfCards(){
     return size;
-} // Get the number of cards in the deck
-
-// Return the cards in top-to-bottom order in a single line, cards are separated by a space ex: "12S QD AS 3H"
+}
 
 bool Deck:: isEmpty(){
     if (getNumberOfCards()==0)

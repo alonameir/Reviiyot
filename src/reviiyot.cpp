@@ -34,9 +34,11 @@ int main(int argc, char **argv) {
 	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD");
     //string* s= new string("KC QH 3D");
 
-	Deck* d= new Deck (*s, 3);
+	Deck* d= new Deck (*s, 2);
     cout << (*d).getNumberOfCards()<<endl;
     cout << (*d).isEmpty()<<endl;
+    d->fetchCard();
+
 	//cout << (*d).toString()<<endl;
 
 
