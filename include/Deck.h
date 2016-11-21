@@ -1,10 +1,10 @@
-/*
+
 #ifndef DECK_H_
 #define DECK_H_
 
-#include "Deck.h"
+
 #include <iostream>
-#include "Card.h"
+#include "../include/Card.h"
 #include <queue>
 #include <string>
 
@@ -13,18 +13,21 @@ using namespace std;
 class Deck {
 private:
 	int size;
-	queue <Card*> deck;
+    queue <Card*> * deck;
 	bool isFigure(string& someCard);
+    FigureCard* bulidFigureCard(string& s);
+    NumericCard* bulidNumericCard(string& s);
 
 public:
 	Card* fetchCard();
-	Deck();
-	virtual ~Deck();
-	Deck::Deck(string& line, int n);
-	Deck::~Deck();
+	//Deck();
+    //virtual ~Deck();
+	Deck(string& line, int n);
+	//Deck::~Deck();
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();
+
 };
 
 #endif /* DECK_H_ */
