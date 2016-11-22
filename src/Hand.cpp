@@ -22,7 +22,7 @@ Card* Hand::getMinVal();
 Card* Hand::getMaxVal();
 
 Card* Hand::give(Card& card);
-bool Hand:: addCard(Card &card);
+
 
 bool Hand::removeCard(Card &card){//returns true if card was removed, false otherwise
     bool removed=false;
@@ -104,7 +104,7 @@ string Hand::toString(){
     return *toAns;
 }
 
-/*
+
 bool Hand::removeCard(Card &card);
 int Hand::getNumberOfCards(); // Get the number of cards in hand
 
