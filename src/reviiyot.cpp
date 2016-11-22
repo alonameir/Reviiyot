@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 	NumericCard* testNum=new NumericCard(Spade, 1000000);
 	cout << (*testNum).toString() << endl;
 */
-	string* s= new string("KC 3D QS 100H");
+	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD ");
     //string* s= new string("KC QH 3D");
 
 	Deck* d= new Deck (*s, 3);

@@ -21,7 +21,7 @@ Deck::Deck(string line, int n) {
     size = 0;
     string *temp = new string("");
     for (int i = 0; i <= line.size(); i = i + 1) {
-        if (i == line.size()) {
+        if (i == line.size())  {
             if (isFigure(*temp)) {
                 FigureCard *toPut;
                 toPut = bulidFigureCard(*temp);
