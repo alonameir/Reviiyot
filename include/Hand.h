@@ -12,13 +12,14 @@ using namespace std;
 class Hand {
 private:
 	list <Card*> * hand;
-	bool search(const Card& value);
-	Card* findMostAppeared();
-	Card* findLeastAppeared();
-	Card* getMinVal();
-	Card* getMaxVal();
-	void sort();
 
+	//bool search(const Card& value);
+	//Card* findMostAppeared();
+	//Card* findLeastAppeared();
+	//Card* getMinVal();
+	//Card* getMaxVal();
+    int comparTo(Card& card1, Card& card2);
+	int changeToInt(string& s);
 public:
 	Hand();
 	bool addCard(Card& card);
