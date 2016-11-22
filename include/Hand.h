@@ -12,20 +12,23 @@ using namespace std;
 class Hand {
 private:
 	list <Card*> * hand;
-	int size;
-
-	//Card* search(object value);
-	Card* findMostAppend();
-	Card* findLeastAppend();
+	bool search(const Card& value);
+	Card* findMostAppeared();
+	Card* findLeastAppeared();
 	Card* getMinVal();
 	Card* getMaxVal();
+	void sort();
+
 public:
 	Hand();
-	bool addCard(Card &card);
+	bool addCard(Card& card);
 	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand
 	string toString(); // Return a list of the cards, separated by space, in one line,
- //in a sorted order, ex: "2S 5D 10H"
+	//in a sorted order, ex: "2S 5D 10H"
+	Card* give(Card& card);
+	bool isEqual(Card* card1, Card* card2);
 };
+
 
 #endif
