@@ -49,13 +49,14 @@ int main(int argc, char **argv) {
 	h->addCard(*t4);
 	h->addCard(*t3);
 	h->addCard(*t2);
+
 	cout << h->toString() <<endl;
-	NumericCard* t9=new NumericCard(Club, 100000);
-	cout << (*h).removeCard(*t9) << endl;
+	NumericCard* t9=new NumericCard(Club, 10000);
 
-	cout << h->toString() << endl;
+	cout << (*h).search(*t9) << endl;
+	cout<< (*h).removeCard(*t9) << endl;
 
-
+	cout << h->toString() <<endl;
 
 }
 

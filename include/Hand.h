@@ -12,10 +12,10 @@ using namespace std;
 class Hand {
 private:
 	list <Card*> * hand;
-/*
-	bool search(const Card& value);
-	Card* findMostAppeared();
-	Card* findLeastAppeared();
+    int n;
+
+/*	int findMostAppeared();
+	int findLeastAppeared();
 	Card* getMinVal();
 	Card* getMaxVal();
  */
@@ -23,12 +23,13 @@ private:
 	int changeToInt(string& s);
 
 public:
-	Hand();
+    bool search(Card& value);
+	Hand(int num);
 	bool addCard(Card& card);
 	bool removeCard(Card& card);
 	//int getNumberOfCards(); // Get the number of cards in hand
 	string toString(); // Return a list of the cards, separated by space, in one line, in a sorted order, ex: "2S 5D 10H"
-	//Card* give(Card& card);
+	Card* give(int val);
 	bool isEqual(Card& card1, Card& card2);
 };
 
