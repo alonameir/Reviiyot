@@ -13,44 +13,41 @@ Hand::Hand(){
     hand=new list<Card*>;
 }
 
+/*
 bool Hand::search(const Card& value);
 
-void Hand:: sort();
 Card* Hand:: findMostAppeared();
+
 Card* Hand::findLeastAppeared();
+
 Card* Hand::getMinVal();
+
 Card* Hand::getMaxVal();
 
 Card* Hand::give(Card& card);
+*/
 
-
-bool Hand::removeCard(Card &card){//returns true if card was removed, false otherwise
-    bool removed=false;
-    if (search(card)){
-        for (list<Card*>::iterator it=((hand)->begin()); it!=hand->end() & !removed; ++*it){
-            if (isEqual(**it,&card)==0){
-                it= (*hand).erase(it);
-                removed=true;
-            }
-        }
-    }
-    return removed;
+bool Hand::removeCard(Card& card){
+    int temp_size=(*hand).size();
+    (*hand).remove(&card);
+    int new_size=(*hand).size();
+    if (temp_size==new_size)
+        return false;
+    return true;
 }
 
-int Hand:: getNumberOfCards(); // Get the number of cards in hand
-string Hand:: toString();
+//int Hand:: getNumberOfCards(); // Get the number of cards in hand
+
 bool Hand:: addCard(Card &card){
     bool isAdd=false;
     for (list<Card*>::iterator it=(*hand).begin(); (!isAdd) && it != hand->end(); ++it){
         if (comparTo(**it,card)!=(-1)){
             hand->insert(it,&card);
             isAdd=true;
-            cout << (card).toString()<<endl;
         }
     }
     if (!isAdd){
         hand->push_back(&card);
-        cout << (card).toString()<<endl;
     }
     return isAdd;
 }
@@ -95,6 +92,7 @@ int Hand::changeToInt(string& s){
     }
     return ret;
 }
+
 string Hand::toString(){
     string *toAns=new string ("");
     for (list<Card*>::iterator it=(*hand).begin(); it != hand->end(); ++it){
@@ -104,12 +102,8 @@ string Hand::toString(){
     return *toAns;
 }
 
-
-bool Hand::removeCard(Card &card);
-int Hand::getNumberOfCards(); // Get the number of cards in hand
-
-bool Hand::isEqual(Card* card1, Card* card2) {
-    if ((*card1).toString().compare((*card2).toString())==0){
+bool Hand::isEqual(Card& card1, Card& card2) {
+    if ((card1).toString().compare((card2).toString())==0){
         return true;
     }
     return false;
