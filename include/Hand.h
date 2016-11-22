@@ -2,15 +2,25 @@
 #define HAND_H_
 
 #include <iostream>
-
-#include "Card.h"
+#include <iostream>
+#include "../include/Card.h"
+#include <list>
+#include <string>
 
 using namespace std;
 
 class Hand {
 private:
-	// Declare here the collection of "Card *" of the hand
+	list <Card*> * hand;
+	int size;
+
+	//Card* search(object value);
+	Card* findMostAppend();
+	Card* findLeastAppend();
+	Card* getMinVal();
+	Card* getMaxVal();
 public:
+	Hand();
 	bool addCard(Card &card);
 	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand

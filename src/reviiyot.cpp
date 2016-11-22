@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
     //string* s= new string("KC QH 3D");
 
 	Deck* d= new Deck (*s, 3);
-   // cout << (*d).getNumberOfCards()<<endl;
-    //cout << (*d).isEmpty()<<endl;
+    cout << (*d).getNumberOfCards()<<endl;
+    cout << (*d).isEmpty()<<endl;
 	cout << (*d).toString()<<endl;
 
 

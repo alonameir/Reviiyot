@@ -3,6 +3,7 @@ using namespace std;
 #include <iostream>
 #include "../include/Card.h"
 #include  "../include/Deck.h"
+#include <stdexcept>
 
 #include <string>
 #include <queue>
@@ -50,8 +51,8 @@ Deck::Deck(string line, int n) {
             }
         }
     }
-//    if (size != (n + 3) * 4)
-  //      throw "Invalid number of card in deck";
+    if (size != (n + 3) * 4)
+       throw invalid_argument ("Invalid number of card in deck");
 }
 
 FigureCard* Deck::bulidFigureCard(string &s) {
@@ -92,7 +93,7 @@ NumericCard *Deck::bulidNumericCard(string &s) {
     else if (s.at(s.size() - 1) == 'S')
         shape = Spade;
     else {
-        throw "invalid shape in numericCard ";
+        throw invalid_argument ("invalid shape in numericCard ");
     }
     s.pop_back();
     int num = stoi(s, 0, 10);
@@ -127,22 +128,19 @@ string Deck::toString() {
         deck->pop();
         deck->push(temp);
     }
-    Card *temp = deck->front();// i need to copy this one because pop will remove it.
-    toAns->append((*temp).toString());
-    deck->pop();
-    deck->push(temp);
     return *toAns;
 }
 
-/*
+
+
 Deck::~Deck(){
     while (size>0){
-        deck.pop();
+        deck->pop();
         size=size-1;
     }
-    delete size;
+    delete &size;
 }
- */
+
 int Deck::getNumberOfCards() {
     return size;
 } // Get the number of cards in the deck
