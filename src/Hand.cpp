@@ -1,29 +1,30 @@
 //
 // Created by romybu on 21/11/16.
 //
-#include <iostream>
-#include <iostream>
-#include "Card.h"
-#include "Hand.h"
-#include <list>
 #include <string>
+#include <list>
+#include <vector>
+#include <iostream>
+#include "../include/Card.h"
+#include "../include/Hand.h"
+
+
 
 using namespace std;
-Hand::Hand(){
+Hand::Hand(int num){
     hand=new list<Card*>;
+    sum=new vector <int> (unsigned (num+3),0);
 }
 
-bool Hand::search(const Card& value);
-
-void Hand:: sort();
-Card* Hand:: findMostAppeared();
+//bool Hand::search(const Card& value);
+/*
 Card* Hand::findLeastAppeared();
-Card* Hand::getMinVal();
-Card* Hand::getMaxVal();
-
-Card* Hand::give(Card& card);
 
 
+*/
+//Card* Hand::give(Card& card);
+
+/*
 bool Hand::removeCard(Card &card){//returns true if card was removed, false otherwise
     bool removed=false;
     if (search(card)){
@@ -36,22 +37,32 @@ bool Hand::removeCard(Card &card){//returns true if card was removed, false othe
     }
     return removed;
 }
+*/
 
-int Hand:: getNumberOfCards(); // Get the number of cards in hand
-string Hand:: toString();
+int Hand:: findMostAppeared(){
+
+}
+Card* Hand::getMaxVal(){
+    return hand->back();
+}
+
+Card* Hand::getMinVal(){
+    return hand->front();
+}
+
 bool Hand:: addCard(Card &card){
     bool isAdd=false;
-    for (list<Card*>::iterator it=(*hand).begin(); (!isAdd) && it != hand->end(); ++it){
-        if (comparTo(**it,card)!=(-1)){
-            hand->insert(it,&card);
-            isAdd=true;
-            cout << (card).toString()<<endl;
+   // if ((hand->search(&card))==false){
+        for (list<Card *>::iterator it = (*hand).begin(); (!isAdd) && it != hand->end(); ++it) {
+            if (comparTo(**it, card) != (-1)) {
+                hand->insert(it, &card);
+                isAdd = true;
+            }
         }
-    }
-    if (!isAdd){
-        hand->push_back(&card);
-        cout << (card).toString()<<endl;
-    }
+        if (!isAdd) {
+            hand->push_back(&card);
+        }
+  //  }
     return isAdd;
 }
 
@@ -95,18 +106,20 @@ int Hand::changeToInt(string& s){
     }
     return ret;
 }
-string Hand::toString(){
-    string *toAns=new string ("");
+
+string* Hand::toString(){
+    string* toAns=new string ("");
     for (list<Card*>::iterator it=(*hand).begin(); it != hand->end(); ++it){
             toAns->append((**it).toString());
             toAns->append(" ");
         }
-    return *toAns;
+    return toAns;
 }
 
-
-bool Hand::removeCard(Card &card);
-int Hand::getNumberOfCards(); // Get the number of cards in hand
+int Hand::getNumberOfCards(){
+    int sum=hand->size();
+    return sum;
+} // Get the number of cards in hand
 
 bool Hand::isEqual(Card* card1, Card* card2) {
     if ((*card1).toString().compare((*card2).toString())==0){

@@ -42,14 +42,22 @@ int main(int argc, char **argv) {
 */
 	Hand* h= new Hand();
 	FigureCard* t1=new FigureCard(Diamond,Jack);
-	FigureCard* t4=new FigureCard(Diamond,King);
-	NumericCard* t2=new NumericCard(Spade, 12);
-	NumericCard* t3=new NumericCard(Club, 100000);
+	FigureCard* t2=new FigureCard(Diamond,King);
+    FigureCard* t3=new FigureCard(Diamond,King);
+	NumericCard* t4=new NumericCard(Spade, 12);
+	NumericCard* t5=new NumericCard(Club, 100000);
+    NumericCard* t6=new NumericCard(Club, 100000);
 	h->addCard(*t1);
 	h->addCard(*t4);
 	h->addCard(*t3);
 	h->addCard(*t2);
+    h->addCard(*t6);
+    h->addCard(*t5);
 	cout << h->toString() <<endl;
+    cout <<h->getNumberOfCards()<<endl;
+    cout << (h->getMinVal())->toString() <<endl;
+    cout << (h->getMaxVal())->toString() <<endl;
+    cout << h->findMostAppeared() <<endl;
 
 
 
