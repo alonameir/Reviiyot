@@ -2,32 +2,30 @@
 #define HAND_H_
 
 #include <iostream>
-#include <vector>
+#include <iostream>
 #include "../include/Card.h"
 #include <list>
 #include <string>
-
+#include <vector>
 using namespace std;
 
 class Hand {
 private:
-	list <Card*>  hand;
-
-	//bool search(const Card& value);
+	list <Card*> hand;
+    bool search(Card& value);
     int comparTo(Card& card1, Card& card2);
-
-
+	int changeToInt(string s);
+    bool isEqual(Card* card1, Card* card2);
 public:
-   // ~Hand();
-	Hand();
-    int changeToInt( string s);
+    Hand();
+    // ~Hand();
 	bool addCard(Card& card);
-	//bool removeCard(Card &card);
+	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand
 	string toString(); // Return a list of the cards, separated by space, in one line,
 	//in a sorted order, ex: "2S 5D 10H"
 	//Card* give(int val);
-	bool isEqual(Card* card1, Card* card2);
+    vector<Card*> giveFigures(int val);
    // int findMostAppeared();
     //int findLeastAppeared();
     //int getMinVal();

@@ -1,36 +1,62 @@
 //
 // Created by romybu on 21/11/16.
 //
+#include <iostream>
 #include <string>
 #include <list>
 #include <vector>
-#include <iostream>
 #include "../include/Card.h"
 #include "../include/Hand.h"
 
-
-
 using namespace std;
-Hand::Hand():hand(){
+
+
+Hand::Hand() : hand() {}
+
+bool Hand::search(Card &value) {
+    bool isFound = false;
+    for (list<Card *>::iterator it = (hand).begin(); (!isFound) && it != hand.end(); ++it) {
+        if (isEqual(**it, value)) {
+            isFound = true;
+        }
+    }
+    return isFound;
 }
 
-//bool Hand::search(const Card& value);
-/*
+/*list<Card*> Hand::give(int val) {
+
+    string* toGive= new string("");
+    if (val<0){
+
+    }
+    else{
+
+    }
 
 
+}*/
 
-*/
-//Card* Hand::give(Card& card);
+vector<Card*> Hand::giveFigures(int val){
+    vector<Card*> ans;
+    int tmp;
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ++it) {
+        tmp=(*it)->firstLetter();
+        if ((tmp)==val){
+            Card* toPush=(*it);
+            ans.push_back(toPush);
+            it=hand.erase(it);
+        }
+    }
+    return ans;
+}
 
-/*
-bool Hand::removeCard(Card &card){//returns true if card was removed, false otherwise
-    bool removed=false;
-    if (search(card)){
-        for (list<Card*>::iterator it=((hand)->begin()); it!=hand->end() & !removed; ++*it){
-            if (isEqual(**it,&card)==0){
-                it= (*hand).erase(it);
-                removed=true;
-            }
+bool Hand::removeCard(Card &card) {
+    bool removed = false;
+    for (list<Card *>::iterator it = (hand).begin(); (!removed) && it != hand.end(); ++it) {
+        if (isEqual(**it, card)) {
+            it = (hand).erase(it);
+            removed = true;
+            delete *it;
         }
     }
     return removed;
@@ -180,14 +206,9 @@ string Hand::toString(){
     return toAns;
 }
 
+bool Hand::isEqual(Card& card1, Card& card2) {
+    if ((card1).toString().compare((card2).toString()) == 0) {
 int Hand::getNumberOfCards(){
     int sum=hand.size();
     return sum;
 } // Get the number of cards in hand
-
-bool Hand::isEqual(Card* card1, Card* card2) {
-    if ((*card1).toString().compare((*card2).toString())==0){
-        return true;
-    }
-    return false;
-}
