@@ -208,6 +208,11 @@ string Hand::toString(){
 
 bool Hand::isEqual(Card& card1, Card& card2) {
     if ((card1).toString().compare((card2).toString()) == 0) {
+        return true;
+    }
+    return false;
+}
+
 int Hand::getNumberOfCards(){
     int sum=hand.size();
     return sum;

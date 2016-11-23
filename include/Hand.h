@@ -15,7 +15,8 @@ private:
     bool search(Card& value);
     int comparTo(Card& card1, Card& card2);
 	int changeToInt(string s);
-    bool isEqual(Card* card1, Card* card2);
+    bool isEqual(Card& card1, Card& card2);
+
 public:
     Hand();
     // ~Hand();
