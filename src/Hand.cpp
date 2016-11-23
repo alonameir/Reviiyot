@@ -11,14 +11,12 @@
 
 
 using namespace std;
-Hand::Hand(int num){
-    hand=new list<Card*>;
-    sum=new vector <int> (unsigned (num+3),0);
+Hand::Hand():hand(){
 }
 
 //bool Hand::search(const Card& value);
 /*
-Card* Hand::findLeastAppeared();
+
 
 
 */
@@ -37,60 +35,126 @@ bool Hand::removeCard(Card &card){//returns true if card was removed, false othe
     }
     return removed;
 }
+
 */
+/*
+int Hand::findLeastAppeared(){//notFinish
+    int minval=0;
+    int minsum=1;
+    int tempval=0;
+    int tempsum=1;
+    for (list<Card *>::iterator it = (*hand).begin(); it != hand->end(); ++it) {
+        string* s=new string("");
+        (*s).append((*it)->toString());
+        int changeto=changeToInt(*s);
+        if (tempval==changeto){
+            tempsum=tempsum+1;
+            tempval=changeto;
+        }
+        else{
+            if (minsum>=tempsum){
+                minval=changeto;
+                minsum=tempsum;
+            }
+            tempsum=1;
+            tempval=changeto;
+        }
+    }
+    return minval;
+}
 
 int Hand:: findMostAppeared(){
+    int highestval=0;
+    int highestsum=0;
+    int tempval=0;
+    int tempsum=1;
+    for (list<Card *>::iterator it = (*hand).begin(); it != hand->end(); ++it) {
+        string* s=new string("");
+        (*s).append((*it)->toString());
+        int changeto=changeToInt(*s);
+        if (tempval==changeto){
+            tempsum=tempsum+1;
+            tempval=changeto;
+        }
+        else{
+            if (highestsum<=tempsum){
+                highestval=changeto;
+                highestsum=tempsum;
+            }
+            tempsum=1;
+            tempval=changeto;
+        }
+    }
+    return highestval;
+}
+
+int Hand::getMaxVal(){
+    Card *curr= hand->back();
+    string *s= new string (curr->toString());
+    int ret=changeToInt(*s);
+    delete curr;
+    delete s;
+    return ret;
 
 }
-Card* Hand::getMaxVal(){
-    return hand->back();
-}
 
-Card* Hand::getMinVal(){
-    return hand->front();
+int Hand::getMinVal(){
+    Card* curr= hand->front();
+    string *s= new string (curr->toString());
+    int ret=changeToInt(*s);
+    delete s;
+    return ret;
 }
-
+*/
 bool Hand:: addCard(Card &card){
     bool isAdd=false;
    // if ((hand->search(&card))==false){
-        for (list<Card *>::iterator it = (*hand).begin(); (!isAdd) && it != hand->end(); ++it) {
+        int val=0;
+        int i=0;
+        for (list<Card *>::iterator it = hand.begin(); (!isAdd) && it != hand.end(); ++it) {
             if (comparTo(**it, card) != (-1)) {
-                hand->insert(it, &card);
+                hand.insert(it, &card);
                 isAdd = true;
             }
         }
         if (!isAdd) {
-            hand->push_back(&card);
+            hand.push_back(&card);
         }
   //  }
     return isAdd;
 }
 
 int Hand::comparTo(Card& card1, Card& card2){
+    int ans=-2;
     string s1=card1.toString();
     string s2=card2.toString();
+    char shape1=s1.back();
+    char shape2= s2.back();
     int val1= changeToInt(s1);
     int val2= changeToInt(s2);
     if (val1<0 & val2>0)
-        return 1;
-    if ((val1>0 & val2>0)|| (val1<0 & val2<0)){
+        ans=1;
+    else if ((val1>0 & val2>0)|| (val1<0 & val2<0)){
         if (val1>val2)
-            return 1;
-        if (val1==val2)
-            return 0;
-        if(val1<val2)
-            return -1;
+            ans= 1;
+        else if (val1==val2 && shape1>shape2)
+            ans= 1;
+        else if (val1==val2 && shape1<shape2)
+            ans= -1;
+        else if(val1<val2)
+            ans=-1;
     }
-    if (val1>0 & val2<0){
-        return -1;
+    else if (val1>0 & val2<0){
+        ans= -1;
     }
     else {
         throw invalid_argument ("Invalid comparTo arguments");
-    };
+    }
+    return ans;
 
 }
 
-int Hand::changeToInt(string& s){
+int Hand::changeToInt(string s){
     int ret;
     if (s.at(0) == 'J')
         ret=-4;
@@ -107,17 +171,17 @@ int Hand::changeToInt(string& s){
     return ret;
 }
 
-string* Hand::toString(){
-    string* toAns=new string ("");
-    for (list<Card*>::iterator it=(*hand).begin(); it != hand->end(); ++it){
-            toAns->append((**it).toString());
-            toAns->append(" ");
+string Hand::toString(){
+    string toAns=("");
+    for (list<Card*>::iterator it=(hand).begin(); it != hand.end(); ++it){
+            toAns.append((**it).toString());
+            toAns.append(" ");
         }
     return toAns;
 }
 
 int Hand::getNumberOfCards(){
-    int sum=hand->size();
+    int sum=hand.size();
     return sum;
 } // Get the number of cards in hand
 

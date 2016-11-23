@@ -1,9 +1,11 @@
-using namespace std;
 
-#include <iostream>
 #include <string>
+#include <iostream>
+
+
 #include "../include/Card.h"
 
+using namespace std;
 
 Card::Card(Shape shape) : shape(shape) {}
 

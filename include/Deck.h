@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include "../include/Card.h"
-#include <queue>
+#include <deque>
 #include <string>
 
 using namespace std;
@@ -13,15 +13,14 @@ using namespace std;
 class Deck {
 private:
 	int size;
-    queue <Card*> * deck;
-	bool isFigure(string& someCard);
-	FigureCard* bulidFigureCard(string& s);
-    NumericCard* bulidNumericCard(string& s);
+    deque <Card*> deck;
+	bool isFigure(string someCard);
+	FigureCard* bulidFigureCard(string s);
+    NumericCard* bulidNumericCard(string s);
 
 public:
 
 	Card* fetchCard();
-	//Deck();
 	Deck(string line, int n);
 	~Deck();
 	int getNumberOfCards();
