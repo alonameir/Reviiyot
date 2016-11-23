@@ -35,7 +35,7 @@ private:
 public:
     FigureCard(Shape shape, Figure figure);
 	virtual string toString() override;
-	char getFigure();
+	string getFigure();
 };
 
 class NumericCard : public Card {

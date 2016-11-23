@@ -48,6 +48,25 @@ string FigureCard::toString() {
     return *str;
 }
 
+string FigureCard::getFigure() {
+    string* str= new string("");
+    switch (figure){
+        case Jack:
+            *str+=("J");
+            break;
+        case Queen:
+            *str+=("Q");
+            break;
+        case King:
+            *str+=("K");
+            break;
+        case Ace:
+            *str+=("A");
+            break;
+    }
+    return *str;
+}
+
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
 
 int NumericCard::getNum() {

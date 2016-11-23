@@ -1,11 +1,10 @@
 //
 // Created by romybu on 21/11/16.
-//
-#include <iostream>
-#include <iostream>
-#include "Card.h"
-#include "Hand.h"
 #include <list>
+#include <iostream>
+#include "../include/Card.h"
+#include "../include/Hand.h"
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -34,10 +33,40 @@ Card* Hand::getMinVal();
 Card* Hand::getMaxVal();
 */
 
-Card *Hand::give(int val) {
+/*list<Card*> Hand::give(int val) {
 
+    string* toGive= new string("");
+    if (val<0){
+
+    }
+    else{
+
+    }
+
+
+}*/
+
+vector<Card*>* Hand::giveFigures(int val){
+    vector<Card*> give(3);
+    give.clear();
+    string* s=new string("");
+    if (val==-1)
+        *s = "A";
+    else if (val==-2)
+        *s = "K";
+    else if (val==-3)
+        *s = "Q";
+    else //(val==-4)
+        *s = "J";
+    for (list<Card *>::iterator it = (*hand).end(); it != hand->begin(); --it) {
+        if ((**it).getFigure().compareTo(*s)==0){
+            give.push_back(**it);
+            hand->remove(**it);
+        }
+    }
+    give.shrink_to_fit();
+    return &give;
 }
-
 
 bool Hand::removeCard(Card &card) {
     bool removed = false;
