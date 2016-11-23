@@ -42,19 +42,22 @@ int main(int argc, char **argv) {
 */
 	Hand* h= new Hand();
 	FigureCard* t1=new FigureCard(Diamond,Jack);
-	FigureCard* t4=new FigureCard(Diamond,King);
 	NumericCard* t2=new NumericCard(Spade, 12);
 	NumericCard* t3=new NumericCard(Club, 100000);
+	FigureCard* t5=new FigureCard(Spade,King);
+	FigureCard* t6=new FigureCard(Heart,King);
+	FigureCard* t4=new FigureCard(Diamond,King);
+
 	h->addCard(*t1);
-	h->addCard(*t4);
-	h->addCard(*t3);
 	h->addCard(*t2);
+	h->addCard(*t3);
+	h->addCard(*t4);
+	h->addCard(*t5);
+	h->addCard(*t6);
 
 	cout << h->toString() <<endl;
-	NumericCard* t9=new NumericCard(Club, 10000);
 
-	cout << (*h).search(*t9) << endl;
-	cout<< (*h).removeCard(*t9) << endl;
+	vector<Card*> c= h->giveFigures(-4);
 
 	cout << h->toString() <<endl;
 

@@ -13,6 +13,7 @@ Shape Card::getShape() {
 
 //~Card
 
+
 FigureCard::FigureCard(Shape shape, Figure figure) : Card(shape), figure(figure) {}
 
 string FigureCard::toString() {
@@ -48,29 +49,29 @@ string FigureCard::toString() {
     return *str;
 }
 
-string FigureCard::getFigure() {
-    string* str= new string("");
+int FigureCard::firstLetter() {
+    int ans;
     switch (figure){
         case Jack:
-            *str+=("J");
+            ans=-4;
             break;
         case Queen:
-            *str+=("Q");
+            ans=-3;
             break;
         case King:
-            *str+=("K");
+            ans=-2;
             break;
         case Ace:
-            *str+=("A");
+            ans=-1;
             break;
     }
-    return *str;
+    return ans;
 }
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
 
-int NumericCard::getNum() {
-    return number;
+int NumericCard::firstLetter() {
+    return (number);
 }
 
 string NumericCard::toString() {

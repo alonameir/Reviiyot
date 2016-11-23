@@ -9,13 +9,11 @@
 
 using namespace std;
 
-Hand::Hand(int num): n(num) {
-    hand = new list<Card *>;
-}
+Hand::Hand() : hand() {}
 
 bool Hand::search(Card &value) {
     bool isFound = false;
-    for (list<Card *>::iterator it = (*hand).begin(); (!isFound) && it != hand->end(); ++it) {
+    for (list<Card *>::iterator it = (hand).begin(); (!isFound) && it != hand.end(); ++it) {
         if (isEqual(**it, value)) {
             isFound = true;
         }
@@ -46,33 +44,25 @@ Card* Hand::getMaxVal();
 
 }*/
 
-vector<Card*>* Hand::giveFigures(int val){
-    vector<Card*> give(3);
-    give.clear();
-    string* s=new string("");
-    if (val==-1)
-        *s = "A";
-    else if (val==-2)
-        *s = "K";
-    else if (val==-3)
-        *s = "Q";
-    else //(val==-4)
-        *s = "J";
-    for (list<Card *>::iterator it = (*hand).end(); it != hand->begin(); --it) {
-        if ((**it).getFigure().compareTo(*s)==0){
-            give.push_back(**it);
-            hand->remove(**it);
+vector<Card*> Hand::giveFigures(int val){
+    vector<Card*> ans;
+    int tmp;
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ++it) {
+        tmp=(*it)->firstLetter();
+        if ((tmp)==val){
+            Card* toPush=(*it);
+            ans.push_back(toPush);
+            it=hand.erase(it);
         }
     }
-    give.shrink_to_fit();
-    return &give;
+    return ans;
 }
 
 bool Hand::removeCard(Card &card) {
     bool removed = false;
-    for (list<Card *>::iterator it = (*hand).begin(); (!removed) && it != hand->end(); ++it) {
+    for (list<Card *>::iterator it = (hand).begin(); (!removed) && it != hand.end(); ++it) {
         if (isEqual(**it, card)) {
-            it = (*hand).erase(it);
+            it = (hand).erase(it);
             removed = true;
             delete *it;
         }
@@ -85,14 +75,14 @@ bool Hand::removeCard(Card &card) {
 
 bool Hand::addCard(Card &card) {
     bool isAdd = false;
-    for (list<Card *>::iterator it = (*hand).begin(); (!isAdd) && it != hand->end(); ++it) {
+    for (list<Card *>::iterator it = (hand).begin(); (!isAdd) && it != hand.end(); ++it) {
         if (comparTo(**it, card) != (-1)) {
-            hand->insert(it, &card);
+            hand.insert(it, &card);
             isAdd = true;
         }
     }
     if (!isAdd) {
-        hand->push_back(&card);
+        hand.push_back(&card);
     }
     return isAdd;
 }
@@ -139,14 +129,14 @@ int Hand::changeToInt(string &s) {
 
 string Hand::toString() {
     string *toAns = new string("");
-    for (list<Card *>::iterator it = (*hand).begin(); it != hand->end(); ++it) {
+    for (list<Card *>::iterator it = (hand).begin(); it != hand.end(); ++it) {
         toAns->append((**it).toString());
         toAns->append(" ");
     }
     return *toAns;
 }
 
-bool Hand::isEqual(Card &card1, Card &card2) {
+bool Hand::isEqual(Card& card1, Card& card2) {
     if ((card1).toString().compare((card2).toString()) == 0) {
         return true;
     }
