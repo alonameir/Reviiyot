@@ -44,27 +44,30 @@ int main(int argc, char **argv) {
 	FigureCard* t1=new FigureCard(Diamond,Jack);
 	FigureCard* t2=new FigureCard(Diamond,King);
     FigureCard* t3=new FigureCard(Spade,Jack);
-    FigureCard* t7=new FigureCard(Club,Jack);
-    FigureCard* t8=new FigureCard(Heart,Jack);
-	NumericCard* t4=new NumericCard(Spade, 12);
-	NumericCard* t5=new NumericCard(Club, 152);
-    NumericCard* t6=new NumericCard(Club,152 );
+    FigureCard* t4=new FigureCard(Club,Jack);
+    FigureCard* t5=new FigureCard(Heart,Jack);
+	NumericCard* t6=new NumericCard(Spade, 12);
+	NumericCard* t7=new NumericCard(Club, 12);
+    NumericCard* t8=new NumericCard(Heart,152);
+    NumericCard* t9=new NumericCard(Club,152);
 	h->addCard(*t1);
-	h->addCard(*t3);
 	h->addCard(*t2);
-	h->addCard(*t4);
+	//h->addCard(*t3);
+	//h->addCard(*t4);
+    //h->addCard(*t5);
     h->addCard(*t6);
-    h->addCard(*t5);
-    h->addCard(*t8);
     h->addCard(*t7);
+    h->addCard(*t8);
+    h->addCard(*t9);
 	cout << h->toString() <<endl;
-    cout <<h->getNumberOfCards()<<endl;
+    //cout <<h->getNumberOfCards()<<endl;
     //cout << (h->getMinVal()) <<endl;
-    //cout << (h->getMaxVal()) <<endl;
-    //cout << h->findMostAppeared() <<endl;
-    //cout << h->findLeastAppeared() <<endl;
-
+   // cout << (h->getMaxVal()) <<endl;
+    cout << h->findMostAppeared() <<endl;
+    cout << h->findLeastAppeared() <<endl;
+    //vector <int>* trunToVector();
 */
+
 
 }
 

@@ -126,21 +126,35 @@ Card* Deck::fetchCard() {
 
 string Deck::toString() {
     string toAns("");
-    for (deque<Card*>::iterator it=deck.begin(); it != deck.end(); ++it){
+    for (auto it= deck.begin(); it != deck.end(); it++){
+
         toAns.append((*it)->toString());
         cout <<toAns<<endl;
         toAns.append(" ");
     }
     return toAns;
 }
+/*
 
+string Deck::toString() {
+    string ans = " ";
+    for(auto it=deck->begin();it!=deck->end();it++) {
+        ans=ans+(*it)->toString();
+        ans=ans+ " ";
+    }
+    return ans;
+}
 
+ toAns.append((*it)->toString());
+        cout <<toAns<<endl;
+        toAns.append(" ");
+*/
 Deck::~Deck(){
     while (size>0){
         deck.pop_front();
         size=size-1;
     }
-    delete &size;
+   // delete &size;
 }
 
 int Deck::getNumberOfCards() {

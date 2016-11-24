@@ -16,7 +16,8 @@ Shape Card::getShape() {
 //~Card
 
 
-FigureCard::FigureCard(Shape shape, Figure figure) : Card(shape), figure(figure) {}
+FigureCard::FigureCard(Shape shape, Figure figure)
+        : Card(shape), figure(figure) {}
 
 string FigureCard::toString() {
     string* str= new string("");
