@@ -1,26 +1,32 @@
-/*
+
 #ifndef GAME_H_
 #define GAME_H_
 
 #include <iostream>
 
-#include "Player.h"
-#include "Deck.h"
+#include "../include/Card.h"
+#include "../include/Deck.h"
+#include "../include/Player.h"
+#include "../include/Hand.h"
 #include <vector>
 using namespace std;
 
 class Game {
 private:
 	vector<Player *> players;  //The list of the players
-	Deck deck;                 //The deck of the game
+	Deck deck;//The deck of the game
+    int currPlayer;
+    int numOfTurns;
+    int verbal;
 public:
 	Game(char* configurationFile);
 	void init();
 	void play();
 	void printState();        //Print the state of the game as described in the assignment.
 	void printWinner();       //Print the winner of the game as describe in the assignment.
-        void printNumberOfTurns(); //Print the number of played turns at any given time.  
+    void printNumberOfTurns(); //Print the number of played turns at any given time.
+    bool isGameOver();
+    void turn(Player& other);
 };
 
 #endif
-*/

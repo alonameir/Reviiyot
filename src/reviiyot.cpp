@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     cout << (d).getNumberOfCards()<<endl;
     cout << (d).isEmpty()<<endl;
 	cout << (d).toString()<<endl;
-/*
+
 	Hand* h= new Hand();
 	FigureCard* t1=new FigureCard(Diamond,Jack);
 	FigureCard* t2=new FigureCard(Diamond,King);
@@ -50,23 +50,22 @@ int main(int argc, char **argv) {
 	NumericCard* t7=new NumericCard(Club, 12);
     NumericCard* t8=new NumericCard(Heart,152);
     NumericCard* t9=new NumericCard(Club,152);
+	NumericCard* t10=new NumericCard(Spade,152);
+	NumericCard* t11=new NumericCard(Diamond,152);
 	h->addCard(*t1);
 	h->addCard(*t2);
-	//h->addCard(*t3);
-	//h->addCard(*t4);
-    //h->addCard(*t5);
+	h->addCard(*t3);
+	h->addCard(*t4);
+    h->addCard(*t5);
     h->addCard(*t6);
     h->addCard(*t7);
     h->addCard(*t8);
     h->addCard(*t9);
+	h->addCard(*t10);
+	h->addCard(*t11);
 	cout << h->toString() <<endl;
-    //cout <<h->getNumberOfCards()<<endl;
-    //cout << (h->getMinVal()) <<endl;
-   // cout << (h->getMaxVal()) <<endl;
-    cout << h->findMostAppeared() <<endl;
-    cout << h->findLeastAppeared() <<endl;
-    //vector <int>* trunToVector();
-*/
+	h->delFour();
+	cout << h->toString() <<endl;
 
 
 }

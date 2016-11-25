@@ -32,7 +32,7 @@ Deck::Deck(string line, int n) : deck(){
         } else {
             if (c != ' ') {
                 temp.push_back(c);
-            } else if (c == ' ') {
+            } else {
                 if (isFigure(temp)) {
                     FigureCard* toPut;
                     toPut = bulidFigureCard(temp);
@@ -54,8 +54,8 @@ FigureCard* Deck::bulidFigureCard(string s) {
     if (s.size() != 2)
         throw "invalid input to buildFigureCard";
     else {
-        Shape shape;
-        Figure figure;
+        Shape shape=Club;
+        Figure figure=Jack;
         if (s.at(0) == 'J')
             figure = Jack;
         else if (s.at(0) == 'K')
@@ -97,9 +97,7 @@ NumericCard* Deck::bulidNumericCard(string s) {
 }
 
 bool Deck::isFigure(string someCard) {
-    if (someCard.at(0) == 'J' || someCard.at(0) == 'Q' || someCard.at(0) == 'K' || someCard.at(0) == 'A')
-        return true;
-    return false;
+    return someCard.at(0) == 'J' || someCard.at(0) == 'Q' || someCard.at(0) == 'K' || someCard.at(0) == 'A';
 }
 
 
