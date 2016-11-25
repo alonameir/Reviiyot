@@ -139,7 +139,7 @@ Deck::~Deck(){
 }
 
 int Deck::getNumberOfCards() {
-    return size;
+    return deck.size();
 } // Get the number of cards in the deck
 
 // Return the cards in top-to-bottom order in a single line, cards are separated by a space ex: "12S QD AS 3H"
