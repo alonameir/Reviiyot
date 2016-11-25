@@ -23,12 +23,10 @@ Deck::Deck(string line, int n) : deck(){
             temp.push_back(c);
             if (isFigure(temp)) {
                 FigureCard* toPut=bulidFigureCard(temp);
-                cout << toPut->toString()<<endl;
                 deck.push_back(toPut);
             } else {
                 NumericCard* toPut;
                 toPut = bulidNumericCard(temp);
-                cout << toPut->toString()<<endl;
                 deck.push_back(toPut);
             }
         } else {
@@ -38,12 +36,10 @@ Deck::Deck(string line, int n) : deck(){
                 if (isFigure(temp)) {
                     FigureCard* toPut;
                     toPut = bulidFigureCard(temp);
-                    cout << toPut->toString()<<endl;
                     deck.push_back(toPut);
                 } else {
                     NumericCard* toPut;
                     toPut = bulidNumericCard(temp);
-                    cout << toPut->toString()<<endl;
                     deck.push_back(toPut);
                 }
                 temp.clear();
