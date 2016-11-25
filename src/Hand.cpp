@@ -23,29 +23,20 @@ bool Hand::search(Card &value) {
     return isFound;
 }
 
-/*list<Card*> Hand::give(int val) {
-
-    string* toGive= new string("");
-    if (val<0){
-
-    }
-    else{
-
-    }
-
-
-}*/
-
-vector<Card*> Hand::giveFigures(int val){
+vector<Card*> Hand::give(int val){
     vector<Card*> ans;
     int tmp;
-    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ++it) {
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ) {
         tmp=(*it)->firstLetter();
         if ((tmp)==val){
             Card* toPush=(*it);
+            cout << toPush->toString() <<endl;
             ans.push_back(toPush);
             it=hand.erase(it);
+            bool a=removeCard(*toPush);
         }
+        else
+            ++it;
     }
     return ans;
 }
@@ -54,17 +45,42 @@ bool Hand::removeCard(Card &card) {
     bool removed = false;
     for (list<Card *>::iterator it = (hand).begin(); (!removed) && it != hand.end(); ++it) {
         if (isEqual(**it, card)) {
+            delete *it;
             it = (hand).erase(it);
             removed = true;
-            delete *it;
         }
     }
     return removed;
 }
 
-*/
-/*
-int Hand::findLeastAppeared(){//notFinish
+void Hand::delFour(){
+    int counter=0;
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ) {
+
+        for (list<Card *>::iterator it2 = hand.begin(); it2 != hand.end(); ) {
+
+            if ((**it2).firstLetter() == (**it).firstLetter()) {
+                ++counter;
+                ++it2;
+            }
+            else{
+                for (int i=0; i<counter; i++) {
+                    ++it;
+                }
+                counter=0;
+            }
+            if (counter==4) {
+                for (int i = 0; i < 4; i++) {
+                    cout << (**it).toString() << endl;
+                   ++it;
+                }
+                counter = 0;
+            }
+        }
+    }
+};
+
+/*int Hand::findLeastAppeared(){//notFinish
     int minval=0;
     int minsum=1;
     int tempval=0;

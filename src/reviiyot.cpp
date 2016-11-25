@@ -26,45 +26,48 @@ int main(int argc, char **argv) {
 	game.printState();
 	return 0;
 	 */
-	/*FigureCard* test=new FigureCard(Diamond,Jack);
-	cout  << (*test).toString() << endl;
 
-	NumericCard* testNum=new NumericCard(Spade, 1000000);
-	cout << (*testNum).toString() << endl;
-*/
-	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD");
+	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD ");
     //string* s= new string("KC QH 3D");
 
-	Deck d(*s, 3);
-    cout << (d).getNumberOfCards()<<endl;
-    cout << (d).isEmpty()<<endl;
-	cout << (d).toString()<<endl;
-/*
-	Hand* h= new Hand();
-	FigureCard* t1=new FigureCard(Diamond,Jack);
-	FigureCard* t2=new FigureCard(Diamond,King);
-    FigureCard* t3=new FigureCard(Spade,Jack);
-    FigureCard* t7=new FigureCard(Club,Jack);
-    FigureCard* t8=new FigureCard(Heart,Jack);
-	NumericCard* t4=new NumericCard(Spade, 12);
-	NumericCard* t5=new NumericCard(Club, 152);
-    NumericCard* t6=new NumericCard(Club,152 );
-	h->addCard(*t1);
-	h->addCard(*t3);
-	h->addCard(*t2);
-	h->addCard(*t4);
-    h->addCard(*t6);
-    h->addCard(*t5);
-    h->addCard(*t8);
-    h->addCard(*t7);
-	cout << h->toString() <<endl;
-    cout <<h->getNumberOfCards()<<endl;
-    //cout << (h->getMinVal()) <<endl;
-    //cout << (h->getMaxVal()) <<endl;
-    //cout << h->findMostAppeared() <<endl;
-    //cout << h->findLeastAppeared() <<endl;
+	//Deck d(*s, 3);
+   // cout << (d).getNumberOfCards()<<endl;
+   // cout << (d).isEmpty()<<endl;
+//	cout << (d).toString()<<endl;
 
-*/
+    Hand* h=new Hand();
+
+    Card* c1= new FigureCard(Diamond,Jack);
+    Card* c3= new FigureCard(Spade,Jack);
+//    Card* c2= new FigureCard(Diamond,Queen);
+    Card* c10= new FigureCard(Club,Jack);
+    Card* c4= new FigureCard(Heart,King);
+    Card* c11= new NumericCard(Club,10);
+    Card* c12= new NumericCard(Diamond,10);
+    Card* c5= new NumericCard(Diamond,9);
+    Card* c6= new NumericCard(Spade,10);
+    Card* c9= new FigureCard(Heart,Jack);
+    Card* c7= new NumericCard(Heart,10);
+    //Card* c8= new NumericCard(Diamond,3);
+
+    (h)->addCard(*c1);
+    //(h)->addCard(*c2);
+    (h)->addCard(*c3);
+    (h)->addCard(*c4);
+    //(h)->addCard(*c5);
+    (h)->addCard(*c11);
+    (h)->addCard(*c12);
+    (h)->addCard(*c6);
+    (h)->addCard(*c7);
+    //(h)->addCard(*c8);
+    (h)->addCard(*c9);
+    (h)->addCard(*c10);
+
+    cout<< h->toString() <<endl;
+
+    h->delFour();
+
+    cout<< h->toString() <<endl;
 
 }
 

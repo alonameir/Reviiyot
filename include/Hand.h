@@ -17,6 +17,8 @@ private:
 	int changeToInt(string s);
     bool isEqual(Card& card1, Card& card2);
 
+
+
 public:
     Hand();
     // ~Hand();
@@ -25,12 +27,12 @@ public:
 	int getNumberOfCards(); // Get the number of cards in hand
 	string toString(); // Return a list of the cards, separated by space, in one line,
 	//in a sorted order, ex: "2S 5D 10H"
-	//Card* give(int val);
-    vector<Card*> giveFigures(int val);
-   // int findMostAppeared();
+	void delFour();
+    vector<Card*> give(int val);
+   	int findMostAppeared();
     //int findLeastAppeared();
-    //int getMinVal();
-    //int getMaxVal();
+    int getMinVal();
+    int getMaxVal();
 };
 
 

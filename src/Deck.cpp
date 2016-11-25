@@ -27,12 +27,10 @@ Deck::Deck(string line, int n) {
             temp.push_back(c);
             if (isFigure(temp)) {
                 FigureCard* toPut=bulidFigureCard(temp);
-                cout << toPut->toString()<<endl;
                 deck.push_front(toPut);
             } else {
                 NumericCard* toPut;
                 toPut = bulidNumericCard(temp);
-                cout << toPut->toString()<<endl;
                 deck.push_front(toPut);
             }
             size = size + 1;
@@ -43,12 +41,10 @@ Deck::Deck(string line, int n) {
                 if (isFigure(temp)) {
                     FigureCard* toPut;
                     toPut = bulidFigureCard(temp);
-                    cout << toPut->toString()<<endl;
                     deck.push_front(toPut);
                 } else {
                     NumericCard* toPut;
                     toPut = bulidNumericCard(temp);
-                    cout << toPut->toString()<<endl;
                     deck.push_front(toPut);
                 }
                 temp.clear();
@@ -128,7 +124,6 @@ string Deck::toString() {
     string toAns("");
     for (deque<Card*>::iterator it=deck.begin(); it != deck.end(); ++it){
         toAns.append((*it)->toString());
-        cout <<toAns<<endl;
         toAns.append(" ");
     }
     return toAns;
@@ -140,7 +135,7 @@ Deck::~Deck(){
         deck.pop_front();
         size=size-1;
     }
-    delete &size;
+   // delete &size;
 }
 
 int Deck::getNumberOfCards() {
