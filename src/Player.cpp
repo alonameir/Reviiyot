@@ -63,9 +63,9 @@ int PlayerType2 :: getType(){
 
 PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position){
     if (_position==0)
-       nextPosition=0;
+       nextPosition=1;
     else{
-        nextPosition=1;
+        nextPosition=0;
     }
 }
 
@@ -91,9 +91,9 @@ int PlayerType3 :: getType(){
 
 PlayerType4 :: PlayerType4(string _name, int _position): Player(_name, _position){
     if (_position==0)
-        nextPosition=0;
-    else{
         nextPosition=1;
+    else{
+        nextPosition=0;
     }
 }
 

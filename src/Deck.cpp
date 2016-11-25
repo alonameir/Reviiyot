@@ -1,8 +1,6 @@
 using namespace std;
 
 #include <iostream>
-#include <stdexcept>
-#include <iterator>
 #include <deque>
 #include <string>
 #include "../include/Card.h"
@@ -17,9 +15,7 @@ Deck::Deck() {
 }
 */
 
-Deck::Deck(string line, int n) {
-    deque<Card *> deck;
-    size = 0;
+Deck::Deck(string line, int n) : deck(){
     string temp;
     for (int i = 0; i < line.size(); i = i + 1) {
         char c = line.at((unsigned long) i);
@@ -28,14 +24,13 @@ Deck::Deck(string line, int n) {
             if (isFigure(temp)) {
                 FigureCard* toPut=bulidFigureCard(temp);
                 cout << toPut->toString()<<endl;
-                deck.push_front(toPut);
+                deck.push_back(toPut);
             } else {
                 NumericCard* toPut;
                 toPut = bulidNumericCard(temp);
                 cout << toPut->toString()<<endl;
-                deck.push_front(toPut);
+                deck.push_back(toPut);
             }
-            size = size + 1;
         } else {
             if (c != ' ') {
                 temp.push_back(c);
@@ -44,19 +39,18 @@ Deck::Deck(string line, int n) {
                     FigureCard* toPut;
                     toPut = bulidFigureCard(temp);
                     cout << toPut->toString()<<endl;
-                    deck.push_front(toPut);
+                    deck.push_back(toPut);
                 } else {
                     NumericCard* toPut;
                     toPut = bulidNumericCard(temp);
                     cout << toPut->toString()<<endl;
-                    deck.push_front(toPut);
+                    deck.push_back(toPut);
                 }
                 temp.clear();
-                size = size + 1;
             }
         }
     }
-    if (size != (n + 3) * 4)
+    if (deck.size()!= (n + 3) * 4)
        throw invalid_argument ("Invalid number of card in deck");
 }
 
@@ -118,53 +112,35 @@ Card* Deck::fetchCard() {
         throw "Empty deck";
     Card* toFetch = deck.front();// i need to copy this one because pop will remove it.
     deck.pop_front();
-    size = size - 1;
     return toFetch;
 
 }
 //Returns the top card of the deck and remove it rom the deck
 
 string Deck::toString() {
-    string toAns("");
-    for (auto it= deck.begin(); it != deck.end(); it++){
-
-        toAns.append((*it)->toString());
-        cout <<toAns<<endl;
-        toAns.append(" ");
-    }
-    return toAns;
-}
-/*
-
-string Deck::toString() {
-    string ans = " ";
-    for(auto it=deck->begin();it!=deck->end();it++) {
+    string ans = "";
+    deque<Card *>::iterator it=deck.begin();
+    while(it!=deck.end()) {
         ans=ans+(*it)->toString();
         ans=ans+ " ";
+        it++;
     }
     return ans;
 }
 
- toAns.append((*it)->toString());
-        cout <<toAns<<endl;
-        toAns.append(" ");
-*/
+
 Deck::~Deck(){
-    while (size>0){
+    while (deck.size()>0){
         deck.pop_front();
-        size=size-1;
     }
-   // delete &size;
 }
 
 int Deck::getNumberOfCards() {
-    return size;
+    return (int) deck.size();
 } // Get the number of cards in the deck
 
 // Return the cards in top-to-bottom order in a single line, cards are separated by a space ex: "12S QD AS 3H"
 
 bool Deck::isEmpty() {
-    if (getNumberOfCards() == 0)
-        return true;
-    return false;
+    return getNumberOfCards() == 0;
 }

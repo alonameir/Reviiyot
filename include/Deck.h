@@ -12,7 +12,6 @@ using namespace std;
 
 class Deck {
 private:
-	int size;
     deque <Card*> deck;
 	bool isFigure(string someCard);
 	FigureCard* bulidFigureCard(string s);
