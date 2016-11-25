@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 
     Card* c1= new FigureCard(Diamond,Jack);
     Card* c3= new FigureCard(Spade,Jack);
-//    Card* c2= new FigureCard(Diamond,Queen);
+  Card* c2= new FigureCard(Diamond,Queen);
     Card* c10= new FigureCard(Club,Jack);
     Card* c4= new FigureCard(Heart,King);
     Card* c11= new NumericCard(Club,10);
@@ -48,18 +48,25 @@ int main(int argc, char **argv) {
     Card* c6= new NumericCard(Spade,10);
     Card* c9= new FigureCard(Heart,Jack);
     Card* c7= new NumericCard(Heart,10);
-    //Card* c8= new NumericCard(Diamond,3);
+    Card* c8= new NumericCard(Diamond,3);
+    Card* c13= new NumericCard(Spade,3);
+    Card* c14= new NumericCard(Heart,3);
+    Card* c15  = new NumericCard(Club,3);
 
     (h)->addCard(*c1);
-    //(h)->addCard(*c2);
+    (h)->addCard(*c13);
+    (h)->addCard(*c14);
+    (h)->addCard(*c15);
+
+    (h)->addCard(*c2);
     (h)->addCard(*c3);
     (h)->addCard(*c4);
-    //(h)->addCard(*c5);
+    (h)->addCard(*c5);
     (h)->addCard(*c11);
     (h)->addCard(*c12);
     (h)->addCard(*c6);
     (h)->addCard(*c7);
-    //(h)->addCard(*c8);
+    (h)->addCard(*c8);
     (h)->addCard(*c9);
     (h)->addCard(*c10);
 

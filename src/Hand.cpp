@@ -55,9 +55,10 @@ bool Hand::removeCard(Card &card) {
 
 void Hand::delFour(){
     int counter=0;
-    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ) {
+    list<Card *>::iterator it2 = hand.begin();
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end() && it2!=hand.end(); ) {
 
-        for (list<Card *>::iterator it2 = hand.begin(); it2 != hand.end(); ) {
+        while ( it2 != hand.end() ) {
 
             if ((**it2).firstLetter() == (**it).firstLetter()) {
                 ++counter;
@@ -71,8 +72,8 @@ void Hand::delFour(){
             }
             if (counter==4) {
                 for (int i = 0; i < 4; i++) {
-                    cout << (**it).toString() << endl;
-                   ++it;
+                    delete *it;
+                    it = (hand).erase(it);
                 }
                 counter = 0;
             }
