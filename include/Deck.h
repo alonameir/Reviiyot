@@ -19,15 +19,14 @@ private:
 
 public:
 	Deck();
-//	Deck(const Deck& other);
 	~Deck();
-//	deque<Card*>& getDeck() const;
+	Deck(const Deck& other);
+	deque<Card*> getDeck() const;
 	Card* fetchCard();
 	Deck(string &line, int n);
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();
-
 };
 
 #endif /* DECK_H_ */

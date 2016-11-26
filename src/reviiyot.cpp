@@ -32,21 +32,19 @@ int main(int argc, char **argv) {
 
 	NumericCard* testNum=new NumericCard(Spade, 1000000);
 	cout << (*testNum).toString() << endl;
-
+*/
 	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD");
     //string* s= new string("KC QH 3D");
 
 	Deck d(*s, 3);
 	cout << (d).toString()<<endl;
 
-*/
+    Deck d2(d);
+
+    cout <<d2.toString() <<endl;
 
 //	Hand* h= new Hand();
-	FigureCard* t1=new FigureCard(Diamond,Jack);
-	FigureCard* t2=new FigureCard(Diamond,King);
- t1=t2;
 
-    cout<<t1->toString() <<endl;
 
 
 }

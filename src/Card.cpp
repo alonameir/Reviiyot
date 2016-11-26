@@ -19,9 +19,11 @@ Card::Card() {
     shape = Diamond;
 }
 
-//const Shape Card::getShape() const {
-//    return shape;
-//}
+const Shape Card::getShapeCopy() const{
+    return shape;
+}
+
+Card::Card(const Card &other): shape(other.getShapeCopy()) {}
 
 //void Card::setShape(Shape other) {
 //    shape=other;
@@ -92,9 +94,12 @@ int FigureCard::firstLetter() {
     return ans;
 }
 
-//Figure FigureCard::getFigure() const {
-//    return figure;
-//}
+FigureCard::FigureCard(const Card &other): Card(other.getShapeCopy()), figure(((FigureCard)other).getFigureCopy()) {}
+
+const Figure FigureCard::getFigureCopy() const {
+    const Figure newFigure=figure;
+    return newFigure;
+}
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number) {};
 
@@ -125,15 +130,10 @@ string NumericCard::toString() {
     return (*str2).append(*str);
 }
 
-//Card &NumericCard::operator=(const NumericCard &other){
-//    if (&other == this)
-//        return *this;
-//    number=other.getNumber();
-//    this->setShape(other.getShape());
-//    return *this;
-//}
-//
-//const int NumericCard::getNumber() const {
-//    return number;}
+const int NumericCard:: getNumericCopy() const{
+    return number;
+}
 
-
+NumericCard::NumericCard(const Card& other): Card(other.getShapeCopy()){
+    number=((NumericCard)other).getNumericCopy();
+}
