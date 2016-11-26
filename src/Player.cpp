@@ -19,21 +19,20 @@ string Player:: getName(){
     return name;
 }
 
-string Player::toString(){
-    string s=getName();
-    s.append(" ");
-    s.append(to_string(position));
-    return s;
-}
+//string Player::toString(){
+//    string s=getName();
+//    s.append(" ");
+//    s.append(to_string(position));
+//    return s;
+//}
 
 int Player:: exchange(int value, Player& other){
-    vector <Card*> gave = give(value);
+    vector <Card*> gave = other.give(value);
     int ans= (int) gave.size();
     for (vector <Card *>::iterator it = gave.begin(); it != gave.end(); ++it){
         Card* curr= *it;
-        other.addCard(*curr);
+        addCard(*curr);
     }
-    //delete gave;
     return ans;
 }
 
@@ -53,6 +52,9 @@ int  PlayerType1 :: whatToAsk(){
     return 1;
 }
 
+int PlayerType1 :: whoToAsk(int numOfPlayers){
+    return -1;
+}
 
 
 PlayerType2 :: PlayerType2(string _name, int _position): Player(_name, _position){}
@@ -64,6 +66,10 @@ int  PlayerType2 :: whatToAsk(){
 
 int PlayerType2 :: getType(){
     return 2;
+}
+
+int PlayerType2 :: whoToAsk(int numOfPlayers){
+    return -1;
 }
 
 
@@ -81,11 +87,13 @@ int  PlayerType3 :: whatToAsk(){
     return toAsk;
 }
 
-int PlayerType3:: whoToAsk(){
+int PlayerType3:: whoToAsk(int numOfPlayers){
     int ret= nextPosition;
     nextPosition++;
+    nextPosition= nextPosition%numOfPlayers;
     if (nextPosition==myPosition()){
         nextPosition++;
+        nextPosition= nextPosition%numOfPlayers;
     }
     return ret;
 }
@@ -109,11 +117,13 @@ int  PlayerType4 :: whatToAsk(){
     return toAsk;
 }
 
-int PlayerType4:: whoToAsk(){
+int PlayerType4:: whoToAsk(int numOfPlayers){
     int ret= nextPosition;
     nextPosition++;
+    nextPosition= nextPosition%numOfPlayers;
     if (nextPosition==myPosition()){
         nextPosition++;
+        nextPosition= nextPosition%numOfPlayers;
     }
     return ret;
 }

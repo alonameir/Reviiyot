@@ -16,29 +16,27 @@ using std::ifstream;
 using namespace std;
 
 void Game:: init(){
-    for (int i=0; i< players.size(); i++){
+    for (int i=0; i< (int)(players.size()); i++){
         for(int j=0; j<7; j++){
-            Card* toAdd=deck.fetchCard();
-            if(!((*(players[i])).addCard(toAdd))){
+            Card* fromDeck=deck.fetchCard();
+            if(!(*(players[i])).addCard(*(fromDeck))){
                 throw invalid_argument ("impossible to add card to a player");
             }
         }
-        (*(players[i])).delfour();
+        (*(players[i])).delFour();
     }
 }
 
 void Game:: play(){
-    init();
     while(!(isGameOver())){
-        turn(&(players[currPlayer]);
+        numOfTurns=numOfTurns+1;
+        turn(*(players[currPlayer]));
         if (currPlayer==players.size()-1)
             currPlayer=0;
         else{
             currPlayer=currPlayer+1;
         }
-        numOfTurns=numOfTurns+1;
     }
-    printState();
 }
 
 void Game:: printNumberOfTurns(){
@@ -53,7 +51,7 @@ void Game:: printWinner(){
         int secondWinner=-1;
         int i;
         for(i=0; i<players.size() && (numOfWinners!=2); i=i+1){
-            if ((*(players[i]))->getNumberOfCards()==0) {
+            if ((*(players[i])).getNumberOfCards()==0) {
                 if (firstWinner == -1) {
                     firstWinner = i;
                     numOfWinners = 1;
@@ -64,34 +62,19 @@ void Game:: printWinner(){
             }
         }
         if (numOfWinners==1)
-            cout<< "***** The Winner is: " << ((*(players[firstWinner]))->getName()) << "*****"<<endl;
+            cout<< "***** The Winner is: " << ((*(players[firstWinner])).getName()) << "*****"<<endl;
         else if (numOfWinners==2)
-            cout<< "***** The Winners are: " << ((*(players[firstWinner]))->getName())
-                << ((*(players[secondWinner]))->getName())<< "*****"<<endl;
+            cout<< "***** The Winners are: " << ((*(players[firstWinner])).getName())
+                << ((*(players[secondWinner])).getName())<< "*****"<<endl;
     }
 }
 
 //Print the number of played turns at any given time.
-void Game:: printState(){
-    if (!isGameOver()) {
-        cout << "Turn " << numOfTurns << endl;
+void Game:: printState() {
+    if (verbal == 1) {
         cout << "Deck: " << deck.toString() << endl;
         for (int i = 0; i < players.size(); i++) {
             cout << players[i]->getName() << ": " << players[i]->toString() << endl;
-        }
-        cout << whoAskWho << endl;
-    }
-    else if (isGameOver()) && verbal==1){
-        printWinner();
-        printNumberOfTurns();
-        cout<< "----------"<< endl;
-        cout<< "Initial State:"<< endl;
-        cout <<initGame <<endl;
-        cout<< "----------"<< endl;
-        cout<< "Final State:"<< endl;
-        cout<< "Deck: "<< deck.toString() <<endl;
-        for( int i=0; i<players.size(); i++){
-            cout<< players[i]->getName() << ": " << players[i]->toString() <<endl;
         }
     }
 }
@@ -99,7 +82,7 @@ void Game:: printState(){
 bool Game:: isGameOver(){
     bool ans=false;
     for(int i=0; i<players.size() &!ans; i++){
-        if ((*(players[i]))->getNumberOfCards()==0)
+        if ((*(players[i])).getNumberOfCards()==0)
             ans=true;
     }
     return ans;
@@ -109,33 +92,40 @@ void Game:: turn(Player& current){
     int value=current.whatToAsk();
     int position=0;
     if (current.getType()==1)
-        position=haveMostOfCard();
+        position=haveMostOfCard(current.myPosition());
     else if (current.getType()==2)
-        position=haveMostOfCard();
+        position=haveMostOfCard(current.myPosition());
     else if (current.getType()==3)
-        position= current.whoToAsk();
+        position= current.whoToAsk((int) players.size());
     else if (current.getType()==4)
-        position= current.whoToAsk();
+        position= current.whoToAsk((int) players.size());
 
-    brief(current.getName(), (*(players[position]))->getName(), value);
-    printState();
+    brief(current.getName(), (*(players[position])).getName(), value);
+    if (verbal==1){
+        cout << "Turn " << numOfTurns << endl;
+        printState();
+        cout << whoToAsk << endl;
+        cout<<endl;
+    }
 
-    int k=current.exchange(value, (*(players[position]));
+    int k=current.exchange(value,(*(players[position])) );
     bool toCheck= true;
     for(int i=0; i<k && toCheck; i++){
-        if(!((*(players[position])).addCard(deck.fetchCard())))
-            toCheck=false;
+        if (!deck.isEmpty()) {
+            if (!((*(players[position])).addCard(*(deck.fetchCard()))))
+                toCheck = false;
+        }
     }
-    if (!toCheck)
-        throw invalid_argument ("invalid fetch Card ");
+    (*(players[position])).delFour();
+    current.delFour();
 
 }
 
-int Game:: haveMostOfCard(){
+int Game:: haveMostOfCard(int notInclude){
     int highesCardsAmount=0;
     int posOfHighest=0;
     for(int i=0; i<players.size(); i++){
-        if (highesCardsAmount <= (players[i]->getNumberOfCards())){
+        if (highesCardsAmount <= (players[i]->getNumberOfCards()) && i!=notInclude){
             highesCardsAmount=players[i]->getNumberOfCards();
             posOfHighest=i;
         }
@@ -163,26 +153,12 @@ void Game:: brief(string name1, string name2, int value){
             s.append("J");
     }
 
-    whoAskWho=s;
+    whoToAsk=s;
 }
 
-void Game:: printInitGame(){
-    string s("");
-    s.append(deck.toString());
-    for( int i=0; i<players.size(); i++){
-        s.append(players[i]->getName());
-        s.append(": ");
-        s.append(players[i]->toString());
-        if (i!=players.size()-1)
-        s.append("\n");
-    }
-    s= initGame;
 
-}
-
-//TO-DO: function that recieves line and returns vector<Player>
 Game::Game(char *configurationFile)
-        : deck(), players(), whoToAsk(), initGame(), verbal(-1), numOfTurns(0), currPlayer(0) {
+        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(0), currPlayer(0) {
     ifstream toRead(string() + configurationFile);
     string content((std::istreambuf_iterator<char>(toRead)),
                    (std::istreambuf_iterator<char>()));
@@ -192,7 +168,7 @@ Game::Game(char *configurationFile)
     istringstream f(content);
 
     while (parameter <= 3) {
-        getline(f, line);//trim
+        getline(f, line);
         if ((!line.empty()) && line.at(0) != '#') {
             if (parameter == 0) {//reading verbal parameter
                 if (line.at(0) == '0')
@@ -200,9 +176,6 @@ Game::Game(char *configurationFile)
                 else
                     verbal = 1;
             } else if (parameter == 1) {//reading highest numeric value parameter
-                string s("");
-                istringstream iss(line);
-                iss >> s;
                 n = stoi(line);
             } else if (parameter == 2) {//reading the deck parameter
                 deck = Deck(line, n);
@@ -212,17 +185,17 @@ Game::Game(char *configurationFile)
                     vector<string> s(split(line, ' '));
                     int strategy = stoi(s[1]);
                     if (strategy == 1) {
-                        PlayerType1 tmp(s[0], pos);
-                        players.push_back(&tmp);
+                        PlayerType1* tmp=new PlayerType1 (s[0], pos);
+                        players.push_back(tmp);
                     } else if (strategy == 2) {
-                        PlayerType2 tmp(s[0], pos);
-                        players.push_back(&tmp);
+                        PlayerType2* tmp=new PlayerType2 (s[0], pos);
+                        players.push_back(tmp);
                     } else if (strategy == 3) {
-                        PlayerType3 tmp(s[0], pos);
-                        players.push_back(&tmp);
+                        PlayerType3* tmp=new PlayerType3 (s[0], pos);
+                        players.push_back(tmp);
                     } else { // (strategy==4)
-                        PlayerType4 tmp(s[0], pos);
-                        players.push_back(&tmp);
+                        PlayerType4* tmp=new PlayerType4 (s[0], pos);
+                        players.push_back(tmp);
                     }
                     pos++;
                     getline(f, line);
@@ -248,15 +221,3 @@ vector<string> Game::split(const string &s, char delim) {
     return elems;
 }
 
-/*
-void Game::init();
-
-void Game::play();
-
-void Game::printState();        //Print the state of the game as described in the assignment.
-void Game::printWinner();       //Print the winner of the game as describe in the assignment.
-void Game::printNumberOfTurns(); //Print the number of played turns at any given time.
-bool Game::isGameOver();
-
-void Game::turn(Player &other);
-*/

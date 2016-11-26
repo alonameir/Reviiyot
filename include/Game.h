@@ -20,13 +20,11 @@ private:
     int verbal;
     int n;
     string whoToAsk;
-    string initGame;
 
     void split(const string &s, char delim, vector<string> &elems);
     vector<string> split(const string &s, char delim);
-    string trim(string& str);
 
-        public:
+	public:
 	Game(char* configurationFile);
     //Game (const Game& other);
 	void init();
@@ -36,9 +34,8 @@ private:
     void printNumberOfTurns(); //Print the number of played turns at any given time.
     bool isGameOver();
     void turn(Player& other);
-	int haveMostOfCard();
+	int haveMostOfCard(int notInclude);
     void brief( string name1, string name2, int value);
-    void printInitGame();
 };
 
 #endif
