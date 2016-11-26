@@ -69,8 +69,7 @@ void Game:: printWinner(){
 
 //Print the number of played turns at any given time.
 void Game:: printState(){
-    bool isOver=(isGameOver());
-    if (!(isOver)) {
+    if (!isGameOver()) {
         cout << "Turn " << numOfTurns << endl;
         cout << "Deck: " << deck.toString() << endl;
         for (int i = 0; i < players.size(); i++) {
@@ -78,7 +77,7 @@ void Game:: printState(){
         }
         cout << whoAskWho << endl;
     }
-    else if ((isOver) && verbal==1){
+    else if (isGameOver()) && verbal==1){
         printWinner();
         printNumberOfTurns();
         cout<< "----------"<< endl;
