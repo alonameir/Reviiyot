@@ -13,7 +13,7 @@ Shape Card::getShape() {
     return shape;
 }
 
-//~Card
+Card::~Card(){}
 
 
 FigureCard::FigureCard(Shape shape, Figure figure)
@@ -52,6 +52,8 @@ string FigureCard::toString() {
     return *str;
 }
 
+FigureCard::~FigureCard() {}
+
 int FigureCard::firstLetter() {
     int ans;
     switch (figure){
@@ -73,6 +75,8 @@ int FigureCard::firstLetter() {
 
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
+
+NumericCard::~NumericCard() {}
 
 int NumericCard::firstLetter() {
     return (number);

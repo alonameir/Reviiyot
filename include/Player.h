@@ -20,6 +20,7 @@ public:
 	string getName();   //Returns the name of the player
 	int exchange(int value, Player& other);
     int myPosition();
+    string toString();
 	virtual int whatToAsk()=0;
 	virtual int getType()=0;
 	virtual int whoToAsk()=0;

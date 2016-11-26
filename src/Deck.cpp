@@ -15,7 +15,7 @@ Deck::Deck() {
 }
 */
 
-Deck::Deck(string line, int n) : deck(){
+Deck::Deck(string &line, int n) : deck(){
     string temp;
     for (int i = 0; i < line.size(); i = i + 1) {
         char c = line.at((unsigned long) i);
@@ -100,6 +100,7 @@ bool Deck::isFigure(string someCard) {
     return someCard.at(0) == 'J' || someCard.at(0) == 'Q' || someCard.at(0) == 'K' || someCard.at(0) == 'A';
 }
 
+Deck::Deck(): deck(){};
 
 Card* Deck::fetchCard() {
     if (isEmpty())

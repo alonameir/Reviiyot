@@ -19,6 +19,13 @@ string Player:: getName(){
     return name;
 }
 
+string Player::toString(){
+    string s=getName();
+    s.append(" ");
+    s.append(to_string(position));
+    return s;
+}
+
 int Player:: exchange(int value, Player& other){
     vector <Card*> gave = give(value);
     int ans= (int) gave.size();

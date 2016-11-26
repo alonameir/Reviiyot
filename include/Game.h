@@ -1,3 +1,4 @@
+
 #ifndef GAME_H_
 #define GAME_H_
 
@@ -17,11 +18,17 @@ private:
     int currPlayer;
     int numOfTurns;
     int verbal;
-	string whoAskWho;
+    int n;
+    string whoToAsk;
     string initGame;
-public:
+
+    void split(const string &s, char delim, vector<string> &elems);
+    vector<string> split(const string &s, char delim);
+    string trim(string& str);
+
+        public:
 	Game(char* configurationFile);
-    Game (const Game& other);
+    //Game (const Game& other);
 	void init();
 	void play();
 	void printState();        //Print the state of the game as described in the assignment.
@@ -33,6 +40,5 @@ public:
     void brief( string name1, string name2, int value);
     void printInitGame();
 };
- #endif
 
-
+#endif
