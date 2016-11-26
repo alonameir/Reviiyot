@@ -23,12 +23,12 @@ bool Hand::search(Card &value) {
     return isFound;
 }
 
-//Hand::~Hand() {
-//    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
-//        delete (**it);
-//    }
-//    hand.clear();
-//}
+Hand::~Hand() {
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
+        delete (*it);
+    }
+    hand.clear();
+}
 
 vector<Card *> Hand::give(int val) {
     vector<Card *> ans;
@@ -40,6 +40,7 @@ vector<Card *> Hand::give(int val) {
             ans.push_back(toPush);
             it = hand.erase(it);
             bool a = removeCard(*toPush);
+//            delete(*toPush);//CHECK
         } else
             ++it;
     }
@@ -128,11 +129,11 @@ int Hand::getMaxVal(){
 
 int Hand::getMinVal(){
     Card* curr= hand.front();
-    string *s= new string (curr->toString());
+    string* s= new string (curr->toString());
     int ret=changeToInt(*s);
-    //delete curr;
-    delete s;
-    return ret;
+    delete (curr);
+    delete (s);
+    return (ret);
 }
 
 bool Hand:: addCard(Card &card){
@@ -196,6 +197,7 @@ int Hand::findLeastAppeared() {
         return minVal;
     }
 }
+
 
 int Hand::comparTo(Card &card1, Card &card2) {
     int ans = -2;

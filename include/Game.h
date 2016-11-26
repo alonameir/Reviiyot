@@ -3,7 +3,6 @@
 #define GAME_H_
 
 #include <iostream>
-
 #include "../include/Card.h"
 #include "../include/Deck.h"
 #include "../include/Player.h"
@@ -23,6 +22,7 @@ private:
 
     void split(const string &s, char delim, vector<string> &elems);
     vector<string> split(const string &s, char delim);
+
 
 	public:
 	Game(char* configurationFile);

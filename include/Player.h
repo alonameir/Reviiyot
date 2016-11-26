@@ -13,14 +13,15 @@ using namespace std;
 
 class Player : public Hand {
 private:
-	const string name;
-	int position;
+    const string name;
+    int position;
 public:
-	Player(string _name, int _position);
-	string getName();   //Returns the name of the player
-	int exchange(int value, Player& other);
+    Player(string _name, int _position);
+    virtual ~Player();
+    string getName();   //Returns the name of the player
+    int exchange(int value, Player &other);
     int myPosition();
-    //string toString();
+    //  string toString();
 	virtual int whatToAsk()=0;
 	virtual int getType()=0;
 	virtual int whoToAsk(int numOfPlayers)=0;
@@ -32,6 +33,7 @@ public:
 	int whatToAsk();
 	int getType();
 	int whoToAsk(int numOfPlayers);
+    ~PlayerType1();;
 };
 
 class PlayerType2 : public Player {  //For strategy 2
@@ -40,6 +42,7 @@ public:
     int whatToAsk();
 	int getType();
 	int whoToAsk(int numOfPlayers);
+    ~PlayerType2();
 };
 
 class PlayerType3 : public Player {  //For strategy 3
@@ -49,7 +52,8 @@ public:
     PlayerType3(string _name, int _position);
     int whoToAsk(int numOfPlayers);
     int whatToAsk();
-	int getType();
+    int getType();
+    ~PlayerType3();
 };
 
 class PlayerType4 : public Player {  //For strategy 4
@@ -59,7 +63,9 @@ public:
     PlayerType4(string _name, int _position);
     int whoToAsk(int numOfPlayers);
     int whatToAsk();
-	int getType();
+    int getType();
+    ~PlayerType4();
 };
+
 
 #endif

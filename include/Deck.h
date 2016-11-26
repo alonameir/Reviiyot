@@ -12,7 +12,6 @@ using namespace std;
 
 class Deck {
 private:
-
     deque <Card*> deck;
 	bool isFigure(string someCard);
 	FigureCard* bulidFigureCard(string s);
@@ -20,9 +19,11 @@ private:
 
 public:
 	Deck();
+//	Deck(const Deck& other);
+	~Deck();
+//	deque<Card*>& getDeck() const;
 	Card* fetchCard();
 	Deck(string &line, int n);
-	~Deck();
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();

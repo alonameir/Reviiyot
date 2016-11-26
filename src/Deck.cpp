@@ -6,14 +6,7 @@ using namespace std;
 #include "../include/Card.h"
 #include  "../include/Deck.h"
 
-
-
-/*
-Deck::Deck() {
-    // TODO Auto-generated constructor stub
-
-}
-*/
+Deck::Deck(): deck(){}
 
 Deck::Deck(string &line, int n) : deck(){
     string temp;
@@ -100,8 +93,7 @@ bool Deck::isFigure(string someCard) {
     return someCard.at(0) == 'J' || someCard.at(0) == 'Q' || someCard.at(0) == 'K' || someCard.at(0) == 'A';
 }
 
-Deck::Deck(): deck(){};
-
+//Returns the top card of the deck and remove it rom the deck
 Card* Deck::fetchCard() {
     if (isEmpty())
         throw "Empty deck";
@@ -110,7 +102,6 @@ Card* Deck::fetchCard() {
     return toFetch;
 
 }
-//Returns the top card of the deck and remove it rom the deck
 
 string Deck::toString() {
     string ans = "";
@@ -123,11 +114,11 @@ string Deck::toString() {
     return ans;
 }
 
-
 Deck::~Deck(){
-    while (deck.size()>0){
-        deck.pop_front();
+    for (deque<Card *>::iterator it=deck.begin(); it!=deck.end(); ++it){
+        delete (*it);
     }
+    deck.clear();
 }
 
 int Deck::getNumberOfCards() {
@@ -139,3 +130,23 @@ int Deck::getNumberOfCards() {
 bool Deck::isEmpty() {
     return getNumberOfCards() == 0;
 }
+//
+//Deck::Deck(const Deck &other) {
+//
+//    deque<Card *>::iterator it=other.getDeck().begin();
+//    while(it!=other.getDeck().begin()) {
+//        Card* tmp;
+//        tmp = *it;
+//
+//        cout<< tmp->toString() <<endl;
+//
+//        deck.push_back(tmp);
+//        delete tmp;
+//        ++it;
+//    }
+//
+//}
+//
+//deque<Card*>& Deck::getDeck() const {
+//    return (deck);
+//}
