@@ -3,12 +3,12 @@
 #define GAME_H_
 
 #include <iostream>
-
 #include "../include/Card.h"
 #include "../include/Deck.h"
 #include "../include/Player.h"
 #include "../include/Hand.h"
 #include <vector>
+
 using namespace std;
 
 class Game {
@@ -29,7 +29,7 @@ private:
 public:
 	Game(char* configurationFile);
     //Game (const Game& other);
-//	~Game();
+	~Game();
 //	void init();
 //	void play();
 //	void printState();        //Print the state of the game as described in the assignment.

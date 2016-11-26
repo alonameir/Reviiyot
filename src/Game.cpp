@@ -180,8 +180,15 @@ using namespace std;
 //
 //}
 
+Game::~Game(){
+    for (vector<Player*>::iterator it=players.begin(); it!=players.end(); ++it){
+        delete (*it);
+    }
+    players.clear();
+}
+
 Game::Game(char *configurationFile)
-        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(0), currPlayer(0) {
+        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(1), currPlayer(0) {
     ifstream toRead(string() + configurationFile);
     string content((std::istreambuf_iterator<char>(toRead)),
                    (std::istreambuf_iterator<char>()));

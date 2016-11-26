@@ -13,66 +13,90 @@ Shape Card::getShape() {
     return shape;
 }
 
-Card::~Card(){}
+Card::~Card() {}
+
+Card::Card() {
+    shape = Diamond;
+}
+
+//const Shape Card::getShape() const {
+//    return shape;
+//}
+
+//void Card::setShape(Shape other) {
+//    shape=other;
+//}
+//
+//Card &FigureCard::operator=(const FigureCard &other) {
+//    if (this==&other)
+//        return *this;
+//    figure=other.getFigure();
+//    this->setShape(other.getShape());
+//    return *this;
+//}
 
 FigureCard::FigureCard(Shape shape, Figure figure)
         : Card(shape), figure(figure) {}
 
 string FigureCard::toString() {
-    string* str= new string("");
-    switch (figure){
+    string str("");
+    switch (figure) {
         case Jack:
-            *str = "J";
+            str = "J";
             break;
         case Queen:
-            *str = "Q";
+            str = "Q";
             break;
         case King:
-            *str = "K";
+            str = "K";
             break;
         case Ace:
-            *str = "A";
+            str = "A";
             break;
     }
     switch (this->getShape()) {
         case Club:
-            *str += "C";
+            str += "C";
             break;
         case Diamond:
-            *str += "D";
+            str += "D";
             break;
         case Heart:
-            *str += "H";
+            str += "H";
             break;
         case Spade:
-            *str += "S";
+            str += "S";
             break;
     }
-    return *str;
+    return str;
 }
 
 FigureCard::~FigureCard() {}
 
 int FigureCard::firstLetter() {
     int ans;
-    switch (figure){
+    switch (figure) {
         case Jack:
-            ans=-4;
+            ans = -4;
             break;
         case Queen:
-            ans=-3;
+            ans = -3;
             break;
         case King:
-            ans=-2;
+            ans = -2;
             break;
         case Ace:
-            ans=-1;
+            ans = -1;
             break;
     }
     return ans;
 }
 
-NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
+//Figure FigureCard::getFigure() const {
+//    return figure;
+//}
+
+NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number) {};
 
 NumericCard::~NumericCard() {}
 
@@ -81,14 +105,14 @@ int NumericCard::firstLetter() {
 }
 
 string NumericCard::toString() {
-    string* str=new string("");
-    string* str2=new string("");
+    string *str = new string("");
+    string *str2 = new string("");
     switch (this->getShape()) {
         case Club:
             *str = "C";
             break;
         case Diamond:
-            *str= "D";
+            *str = "D";
             break;
         case Heart:
             *str = "H";
@@ -97,6 +121,19 @@ string NumericCard::toString() {
             *str = "S";
             break;
     }
-    *str2= to_string(number);
+    *str2 = to_string(number);
     return (*str2).append(*str);
 }
+
+//Card &NumericCard::operator=(const NumericCard &other){
+//    if (&other == this)
+//        return *this;
+//    number=other.getNumber();
+//    this->setShape(other.getShape());
+//    return *this;
+//}
+//
+//const int NumericCard::getNumber() const {
+//    return number;}
+
+

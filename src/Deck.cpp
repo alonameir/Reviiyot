@@ -116,7 +116,7 @@ string Deck::toString() {
 
 Deck::~Deck(){
     for (deque<Card *>::iterator it=deck.begin(); it!=deck.end(); ++it){
-        delete **it;
+        delete (*it);
     }
     deck.clear();
 }
@@ -130,3 +130,23 @@ int Deck::getNumberOfCards() {
 bool Deck::isEmpty() {
     return getNumberOfCards() == 0;
 }
+//
+//Deck::Deck(const Deck &other) {
+//
+//    deque<Card *>::iterator it=other.getDeck().begin();
+//    while(it!=other.getDeck().begin()) {
+//        Card* tmp;
+//        tmp = *it;
+//
+//        cout<< tmp->toString() <<endl;
+//
+//        deck.push_back(tmp);
+//        delete tmp;
+//        ++it;
+//    }
+//
+//}
+//
+//deque<Card*>& Deck::getDeck() const {
+//    return (deck);
+//}

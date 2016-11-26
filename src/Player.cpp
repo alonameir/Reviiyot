@@ -15,18 +15,18 @@ using namespace std;
 
 Player::Player(string _name, int _position): name(_name), position(_position){}
 
-//Player::~Player(){}
+Player::~Player(){}
 
 string Player:: getName(){
     return name;
 }
 
-string Player::toString(){
-    string s=getName();
-    s.append(" ");
-    s.append(to_string(position));
-    return s;
-}
+//string Player::toString(){
+//    string s=getName();
+//    s.append(" ");
+//    s.append(to_string(position));
+//    return s;
+//}
 
 int Player:: exchange(int value, Player& other){
     vector <Card*> gave = give(value);
@@ -46,7 +46,6 @@ int Player:: myPosition(){
 PlayerType1 :: PlayerType1(string _name, int _position): Player(_name, _position){}
 
 int PlayerType1::whoToAsk(){return -1;}
-
 
 int  PlayerType1 :: whatToAsk(){
     int toAsk= findMostAppeared();
@@ -71,7 +70,9 @@ int  PlayerType2 :: whatToAsk(){
 int PlayerType2 :: getType(){
     return 2;
 }
+
 int PlayerType2::whoToAsk(){return -1;}
+
 PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position){
     if (_position==0)
        nextPosition=1;
@@ -81,8 +82,6 @@ PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position
 }
 
 PlayerType3::~PlayerType3(){}
-
-PlayerType4::~PlayerType4(){}
 
 int  PlayerType3 :: whatToAsk(){
     int toAsk= getMaxVal();
@@ -127,3 +126,5 @@ int PlayerType4:: whoToAsk(){
 int PlayerType4 :: getType(){
     return 4;
 }
+
+PlayerType4::~PlayerType4(){}

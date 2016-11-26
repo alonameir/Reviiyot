@@ -19,7 +19,9 @@ private:
 
 public:
 	Deck();
+//	Deck(const Deck& other);
 	~Deck();
+//	deque<Card*>& getDeck() const;
 	Card* fetchCard();
 	Deck(string &line, int n);
 	int getNumberOfCards();

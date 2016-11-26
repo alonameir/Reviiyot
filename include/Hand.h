@@ -19,7 +19,7 @@ protected:
 
 public:
     Hand();
-   // virtual ~Hand();
+   	virtual ~Hand();
 	bool addCard(Card& card);
 	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand
