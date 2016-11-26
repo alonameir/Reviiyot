@@ -28,6 +28,7 @@ void Game:: init(){
 }
 
 void Game:: play(){
+    printState();
     while(!(isGameOver())){
         numOfTurns=numOfTurns+1;
         turn(*(players[currPlayer]));
@@ -62,16 +63,23 @@ void Game:: printWinner(){
             }
         }
         if (numOfWinners==1)
-            cout<< "***** The Winner is: " << ((*(players[firstWinner])).getName()) << "*****"<<endl;
-        else if (numOfWinners==2)
-            cout<< "***** The Winners are: " << ((*(players[firstWinner])).getName())
-                << ((*(players[secondWinner])).getName())<< "*****"<<endl;
+            cout<< "***** The Winner is: " << ((*(players[firstWinner])).getName()) << " *****"<<endl;
+        else if (numOfWinners==2){
+            cout<< "***** The Winners are: " << ((*(players[firstWinner])).getName());
+               cout << " and " << ((*(players[secondWinner])).getName())<< " *****"<<endl;
+        }
     }
 }
 
 //Print the number of played turns at any given time.
 void Game:: printState() {
     if (verbal == 1) {
+        cout << "Deck: " << deck.toString() << endl;
+        for (int i = 0; i < players.size(); i++) {
+            cout << players[i]->getName() << ": " << players[i]->toString() << endl;
+        }
+    }
+    else if ((isGameOver())|| (numOfTurns==1)){
         cout << "Deck: " << deck.toString() << endl;
         for (int i = 0; i < players.size(); i++) {
             cout << players[i]->getName() << ": " << players[i]->toString() << endl;
@@ -114,6 +122,12 @@ void Game:: turn(Player& current){
         if (!deck.isEmpty()) {
             if (!((*(players[position])).addCard(*(deck.fetchCard()))))
                 toCheck = false;
+        }
+    }
+
+    if (k==0){
+        if (!deck.isEmpty()) {
+            current.addCard(*(deck.fetchCard()));
         }
     }
     (*(players[position])).delFour();
