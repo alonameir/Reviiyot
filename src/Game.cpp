@@ -64,9 +64,9 @@ void Game:: printWinner(){
         }
         if (numOfWinners==1)
             cout<< "***** The Winner is: " << ((*(players[firstWinner])).getName()) << " *****"<<endl;
-        else if (numOfWinners==2){
-            cout<< "***** The Winners are: " << ((*(players[firstWinner])).getName());
-               cout << " and " << ((*(players[secondWinner])).getName())<< " *****"<<endl;
+        else if (numOfWinners==2) {
+            cout << "***** The Winners are: " << ((*(players[firstWinner])).getName());
+            cout << " and " << ((*(players[secondWinner])).getName()) << " *****" << endl;
         }
     }
 }
