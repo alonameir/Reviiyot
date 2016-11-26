@@ -16,10 +16,6 @@ protected:
     int comparTo(Card& card1, Card& card2);
 	int changeToInt(string s);
     bool isEqual(Card& card1, Card& card2);
-    int getMinVal();
-    int getMaxVal();
-
-
 
 public:
     Hand();
@@ -33,6 +29,8 @@ public:
     int findMostAppeared();
     int findLeastAppeared();
     void delFour();
+	int getMinVal();
+	int getMaxVal();
 };
 
 

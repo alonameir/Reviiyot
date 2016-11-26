@@ -7,4 +7,4 @@ include_directories(include src)
 
 file(GLOB SOURCES "src/*.cpp" "include/*.h")
 
-add_executable(Reviiyot ${SOURCES} src/Hand.cpp src/Player.cpp)
+add_executable(Reviiyot ${SOURCES} src/Hand.cpp src/Player.cpp src/Game.cpp)

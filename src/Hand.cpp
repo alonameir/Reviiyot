@@ -1,8 +1,8 @@
 //
 // Created by romybu on 21/11/16.
 //
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <list>
 #include <vector>
 #include "../include/Card.h"
@@ -132,8 +132,6 @@ int Hand::getMinVal(){
 bool Hand:: addCard(Card &card){
     bool isAdd=false;
     if (!(search(card))){
-        int val=0;
-        int i=0;
         for (list<Card *>::iterator it = hand.begin(); (!isAdd) && it != hand.end(); ++it) {
             if (comparTo(**it, card) != (-1)) {
                 hand.insert(it, &card);
@@ -150,7 +148,7 @@ bool Hand:: addCard(Card &card){
 int Hand::findLeastAppeared() {
     int counter = 0;
     int minVal = (*(hand).front()).firstLetter();
-    int minSum = hand.size();
+    int minSum = (int) hand.size();
     list<Card *>::iterator it2 = hand.begin();
     for (list<Card *>::iterator it = hand.begin(); it != hand.end() && it2 != hand.end();) {
         while (it2 != hand.end()) {
@@ -158,20 +156,27 @@ int Hand::findLeastAppeared() {
                 ++counter;
                 ++it2;
             } else {
-                if ((minSum==hand.size())
-                    || (counter < minSum)) {
+                if (minSum == hand.size()) {
                     minSum = counter;
                     minVal = (**it).firstLetter();
                     for (int i = 0; i < counter; i++) {
                         ++it;
                     }
                     counter = 0;
-                }
-                else{
-                    for (int i = 0; i < counter; i++) {
-                        ++it;
+                } else {
+                    if (minSum > counter) {
+                        minSum = counter;
+                        minVal = (**it).firstLetter();
+                        for (int i = 0; i < counter; i++) {
+                            ++it;
+                        }
+                        counter = 0;
+                    } else {
+                        for (int i = 0; i < counter; i++) {
+                            ++it;
+                        }
+                        counter = 0;
                     }
-                    counter = 0;
                 }
             }
         }
@@ -236,13 +241,10 @@ string Hand::toString(){
 }
 
 bool Hand::isEqual(Card &card1, Card &card2) {
-    if ((card1).toString().compare((card2).toString()) == 0) {
-        return true;
-    }
-    return false;
+    return (card1).toString().compare((card2).toString()) == 0;
 }
 
 int Hand::getNumberOfCards() {
-    int sum = hand.size();
+    int sum = (int) hand.size();
     return sum;
 } // Get the number of cards in hand
