@@ -12,15 +12,16 @@ using namespace std;
 
 class Deck {
 private:
+
     deque <Card*> deck;
 	bool isFigure(string someCard);
 	FigureCard* bulidFigureCard(string s);
     NumericCard* bulidNumericCard(string s);
 
 public:
-
+	Deck();
 	Card* fetchCard();
-	Deck(string line, int n);
+	Deck(string &line, int n);
 	~Deck();
 	int getNumberOfCards();
 	string toString();

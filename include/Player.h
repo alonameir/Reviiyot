@@ -22,6 +22,7 @@ public:
     int myPosition();
 	virtual int whatToAsk()=0;
 	virtual int getType()=0;
+	string toString();
 };
 
 class PlayerType1 : public Player {  //For strategy 1
