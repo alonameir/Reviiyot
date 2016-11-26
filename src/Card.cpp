@@ -15,7 +15,6 @@ Shape Card::getShape() {
 
 Card::~Card(){}
 
-
 FigureCard::FigureCard(Shape shape, Figure figure)
         : Card(shape), figure(figure) {}
 
@@ -72,7 +71,6 @@ int FigureCard::firstLetter() {
     }
     return ans;
 }
-
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
 

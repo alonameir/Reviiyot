@@ -23,12 +23,12 @@ bool Hand::search(Card &value) {
     return isFound;
 }
 
-Hand::~Hand() {
-    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
-        delete (**it);
-    }
-    hand.clear();
-}
+//Hand::~Hand() {
+//    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
+//        delete **it;
+//    }
+//    hand.clear();
+//}
 
 vector<Card *> Hand::give(int val) {
     vector<Card *> ans;

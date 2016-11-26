@@ -15,6 +15,8 @@ using namespace std;
 
 Player::Player(string _name, int _position): name(_name), position(_position){}
 
+//Player::~Player(){}
+
 string Player:: getName(){
     return name;
 }
@@ -41,21 +43,25 @@ int Player:: myPosition(){
     return position;
 }
 
-
 PlayerType1 :: PlayerType1(string _name, int _position): Player(_name, _position){}
+
+int PlayerType1::whoToAsk(){return -1;}
+
 
 int  PlayerType1 :: whatToAsk(){
     int toAsk= findMostAppeared();
     return toAsk;
 }
 
- int PlayerType1 :: getType(){
+PlayerType1::~PlayerType1(){}
+
+int PlayerType1 :: getType(){
     return 1;
 }
 
-
-
 PlayerType2 :: PlayerType2(string _name, int _position): Player(_name, _position){}
+
+PlayerType2::~PlayerType2(){}
 
 int  PlayerType2 :: whatToAsk(){
     int toAsk= findLeastAppeared();
@@ -65,9 +71,7 @@ int  PlayerType2 :: whatToAsk(){
 int PlayerType2 :: getType(){
     return 2;
 }
-
-
-
+int PlayerType2::whoToAsk(){return -1;}
 PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position){
     if (_position==0)
        nextPosition=1;
@@ -75,6 +79,10 @@ PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position
         nextPosition=0;
     }
 }
+
+PlayerType3::~PlayerType3(){}
+
+PlayerType4::~PlayerType4(){}
 
 int  PlayerType3 :: whatToAsk(){
     int toAsk= getMaxVal();
@@ -93,8 +101,6 @@ int PlayerType3:: whoToAsk(){
 int PlayerType3 :: getType(){
     return 3;
 }
-
-
 
 PlayerType4 :: PlayerType4(string _name, int _position): Player(_name, _position){
     if (_position==0)
