@@ -71,6 +71,7 @@ int FigureCard::firstLetter() {
     return ans;
 }
 
+
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number){};
 
 int NumericCard::firstLetter() {

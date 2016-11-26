@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 
 	NumericCard* testNum=new NumericCard(Spade, 1000000);
 	cout << (*testNum).toString() << endl;
-*/
+
 	string* s= new string("KC QH 3D AH JH 2C 3S KS AS JS 3C KH AD QC JD QS 3H KD AC JC 2D 2H 2S QD");
     //string* s= new string("KC QH 3D");
 
@@ -66,7 +66,10 @@ int main(int argc, char **argv) {
 	cout << h->toString() <<endl;
 	h->delFour();
 	cout << h->toString() <<endl;
+	cout<< "***** The Winner is: " << h->toString() << "*****"<<endl;
+    */
 
-
+    string s= "a\nb";
+    cout<< s << endl;
 }
 
