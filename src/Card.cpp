@@ -114,6 +114,11 @@ const Figure FigureCard::getFigureCopy() const {
     return Ace;
 }
 
+Card *FigureCard::copy() {
+    return new FigureCard(this->getShape(), figure);
+}
+
+
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number) {};
 
 NumericCard::~NumericCard() {}
@@ -150,3 +155,8 @@ const int NumericCard:: getNumericCopy() const{
 NumericCard::NumericCard(const NumericCard& other): Card(other.getShapeCopy()){
     number=(other).getNumericCopy();
 }
+
+Card *NumericCard::copy() {
+    return new NumericCard(this->getShape(),number);
+}
+

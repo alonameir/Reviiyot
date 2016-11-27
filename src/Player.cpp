@@ -40,7 +40,6 @@ int Player:: myPosition(){
     return position;
 }
 
-
 PlayerType1 :: PlayerType1(string _name, int _position): Player(_name, _position){}
 
 int  PlayerType1 :: whatToAsk(){

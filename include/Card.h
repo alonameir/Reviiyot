@@ -27,7 +27,8 @@ public:
     virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
     virtual ~Card();
     Shape getShape();
-	const Shape getShapeCopy() const;
+	virtual Card* copy()=0;
+    const Shape getShapeCopy() const;
 	virtual int firstLetter()=0;
 	Card(const Card& other);
 };
@@ -42,6 +43,7 @@ public:
 	virtual string toString() override;
 	virtual int firstLetter();
 	FigureCard(const FigureCard& other);
+    Card* copy();
 };
 
 class NumericCard : public Card {
@@ -54,6 +56,7 @@ public:
 	virtual int firstLetter();
 	const int getNumericCopy() const;
 	NumericCard(const NumericCard& other);
- };
+    Card* copy();
+};
 
 #endif

@@ -21,7 +21,6 @@ public:
 	Deck();
 	virtual ~Deck();
 	Deck(const Deck& other);
-	deque<Card*> getDeck() const;
 	Card* fetchCard();
     void buildDeck(string &line, int n);
 	int getNumberOfCards();
