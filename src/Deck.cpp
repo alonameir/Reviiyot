@@ -6,19 +6,19 @@ using namespace std;
 #include "../include/Card.h"
 #include  "../include/Deck.h"
 
-Deck::Deck(): deck(){}
+Deck::Deck() : deck() {}
 
-Deck::Deck(string &line, int n) : deck(){
+Deck::Deck(string &line, int n) : deck() {
     string temp;
     for (int i = 0; i < line.size(); i = i + 1) {
         char c = line.at((unsigned long) i);
-        if ((i == line.size()-1) && (c != ' ') ){
+        if ((i == line.size() - 1) && (c != ' ')) {
             temp.push_back(c);
             if (isFigure(temp)) {
-                FigureCard* toPut=bulidFigureCard(temp);
+                FigureCard *toPut = bulidFigureCard(temp);
                 deck.push_back(toPut);
             } else {
-                NumericCard* toPut;
+                NumericCard *toPut;
                 toPut = bulidNumericCard(temp);
                 deck.push_back(toPut);
             }
@@ -27,11 +27,11 @@ Deck::Deck(string &line, int n) : deck(){
                 temp.push_back(c);
             } else {
                 if (isFigure(temp)) {
-                    FigureCard* toPut;
+                    FigureCard *toPut;
                     toPut = bulidFigureCard(temp);
                     deck.push_back(toPut);
                 } else {
-                    NumericCard* toPut;
+                    NumericCard *toPut;
                     toPut = bulidNumericCard(temp);
                     deck.push_back(toPut);
                 }
@@ -39,16 +39,16 @@ Deck::Deck(string &line, int n) : deck(){
             }
         }
     }
-    if (deck.size()!= (n + 3) * 4)
-       throw invalid_argument ("Invalid number of card in deck");
+    if (deck.size() != (n + 3) * 4)
+        throw invalid_argument("Invalid number of card in deck");
 }
 
-FigureCard* Deck::bulidFigureCard(string s) {
+FigureCard *Deck::bulidFigureCard(string s) {
     if (s.size() != 2)
         throw "invalid input to buildFigureCard";
     else {
-        Shape shape=Club;
-        Figure figure=Jack;
+        Shape shape = Club;
+        Figure figure = Jack;
         if (s.at(0) == 'J')
             figure = Jack;
         else if (s.at(0) == 'K')
@@ -70,7 +70,7 @@ FigureCard* Deck::bulidFigureCard(string s) {
     }
 }
 
-NumericCard* Deck::bulidNumericCard(string s) {
+NumericCard *Deck::bulidNumericCard(string s) {
     Shape shape;
     if (s.at(s.size() - 1) == 'C')
         shape = Club;
@@ -81,7 +81,7 @@ NumericCard* Deck::bulidNumericCard(string s) {
     else if (s.at(s.size() - 1) == 'S')
         shape = Spade;
     else {
-        throw invalid_argument ("invalid shape in numericCard ");
+        throw invalid_argument("invalid shape in numericCard ");
     }
     s.pop_back();
     int num = stoi(s, 0, 10);
@@ -94,10 +94,10 @@ bool Deck::isFigure(string someCard) {
 }
 
 //Returns the top card of the deck and remove it rom the deck
-Card* Deck::fetchCard() {
+Card *Deck::fetchCard() {
     if (isEmpty())
         throw "Empty deck";
-    Card* toFetch = deck.front();// i need to copy this one because pop will remove it.
+    Card *toFetch = deck.front();// i need to copy this one because pop will remove it.
     deck.pop_front();
     return toFetch;
 
@@ -105,17 +105,17 @@ Card* Deck::fetchCard() {
 
 string Deck::toString() {
     string ans = "";
-    deque<Card *>::iterator it=deck.begin();
-    while(it!=deck.end()) {
-        ans=ans+(*it)->toString();
-        ans=ans+ " ";
+    deque<Card *>::iterator it = deck.begin();
+    while (it != deck.end()) {
+        ans = ans + (*it)->toString();
+        ans = ans + " ";
         it++;
     }
     return ans;
 }
 
-Deck::~Deck(){
-    for (deque<Card *>::iterator it=deck.begin(); it!=deck.end(); ++it){
+Deck::~Deck() {
+    for (deque<Card *>::iterator it = deck.begin(); it != deck.end(); ++it) {
         delete (*it);
     }
     deck.clear();
@@ -131,21 +131,26 @@ bool Deck::isEmpty() {
     return getNumberOfCards() == 0;
 }
 
-Deck::Deck(const Deck &other) {
-    deque<Card *>::iterator it=other.getDeck().begin();
-    while((it)!=(other.getDeck().end())) {
+Deck::Deck(const Deck &other): deck() {
+    for (deque<Card *>::iterator it = (other.getDeck()).begin(); it != (other.getDeck()).end(); ++it) {
         if ((**it).firstLetter()<0){
-            FigureCard tmp(**it);
-            deck.push_back(&tmp);
+            string s;
+            s=(**it).toString();
+            FigureCard* tmp= bulidFigureCard(s);
+            cout <<tmp->toString() <<endl;
+            deck.push_back(tmp);
         }
         else{
-            NumericCard tmp(**it);
-            deck.push_back(&tmp);
+            string s;
+            s=(**it).toString();
+            NumericCard* tmp= bulidNumericCard(s);
+            cout << tmp->toString() <<endl;
+            deck.push_back(tmp);
         }
-        ++it;
     }
+
 }
 
-deque<Card*> Deck::getDeck() const {
+deque<Card *> Deck::getDeck() const {
     return (deck);
 }

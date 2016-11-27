@@ -41,7 +41,7 @@ public:
     FigureCard(Shape shape, Figure figure);
 	virtual string toString() override;
 	virtual int firstLetter();
-	FigureCard(const Card& other);
+	FigureCard(const FigureCard& other);
 };
 
 class NumericCard : public Card {
@@ -53,7 +53,7 @@ public:
 	virtual string toString() override;
 	virtual int firstLetter();
 	const int getNumericCopy() const;
-	NumericCard(const Card& other);
+	NumericCard(const NumericCard& other);
  };
 
 #endif

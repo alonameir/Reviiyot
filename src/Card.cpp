@@ -20,7 +20,13 @@ Card::Card() {
 }
 
 const Shape Card::getShapeCopy() const{
-    return shape;
+    if (shape==Diamond)
+        return Diamond;
+    else if (shape==Spade)
+        return Spade;
+    else if (shape==Heart)
+        return Heart;
+    return Club;
 }
 
 Card::Card(const Card &other): shape(other.getShapeCopy()) {}
@@ -94,11 +100,18 @@ int FigureCard::firstLetter() {
     return ans;
 }
 
-FigureCard::FigureCard(const Card &other): Card(other.getShapeCopy()), figure(((FigureCard)other).getFigureCopy()) {}
+FigureCard::FigureCard(const FigureCard &other): Card(other.getShapeCopy()), figure(other.getFigureCopy()) {
+   // cout << "called figurecard copy constructor" <<endl;
+}
 
 const Figure FigureCard::getFigureCopy() const {
-    const Figure newFigure=figure;
-    return newFigure;
+    if(figure==Jack)
+        return Jack;
+    else if(figure==Queen)
+        return Queen;
+    else if(figure==King)
+        return King;
+    return Ace;
 }
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number) {};
@@ -134,6 +147,6 @@ const int NumericCard:: getNumericCopy() const{
     return number;
 }
 
-NumericCard::NumericCard(const Card& other): Card(other.getShapeCopy()){
-    number=((NumericCard)other).getNumericCopy();
+NumericCard::NumericCard(const NumericCard& other): Card(other.getShapeCopy()){
+    number=(other).getNumericCopy();
 }
