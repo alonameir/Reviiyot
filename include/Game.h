@@ -3,12 +3,12 @@
 #define GAME_H_
 
 #include <iostream>
-
 #include "../include/Card.h"
 #include "../include/Deck.h"
 #include "../include/Player.h"
 #include "../include/Hand.h"
 #include <vector>
+
 using namespace std;
 
 class Game {
@@ -20,6 +20,7 @@ private:
     int verbal;
     int n;
     string whoToAsk;
+    string initGame;
 
     void split(const string &s, char delim, vector<string> &elems);
     vector<string> split(const string &s, char delim);
@@ -36,6 +37,7 @@ private:
     void turn(Player& other);
 	int haveMostOfCard(int notInclude);
     void brief( string name1, string name2, int value);
+    //~Game();
 };
 
 #endif

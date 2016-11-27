@@ -172,7 +172,7 @@ void Game:: brief(string name1, string name2, int value){
 
 
 Game::Game(char *configurationFile)
-        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(0), currPlayer(0) {
+        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(1), currPlayer(0) {
     ifstream toRead(string() + configurationFile);
     string content((std::istreambuf_iterator<char>(toRead)),
                    (std::istreambuf_iterator<char>()));
@@ -235,3 +235,6 @@ vector<string> Game::split(const string &s, char delim) {
     return elems;
 }
 
+//Game::Game(const Game &other) {
+//
+//}
