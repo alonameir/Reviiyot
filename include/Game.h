@@ -25,22 +25,20 @@ private:
     void split(const string &s, char delim, vector<string> &elems);
     vector<string> split(const string &s, char delim);
 
-
-public:
+	public:
 	Game(char* configurationFile);
-   // Game (const Game& other);
-	~Game();
+    //Game (const Game& other);
+	void init();
+	void play();
+	void printState();        //Print the state of the game as described in the assignment.
+	void printWinner();       //Print the winner of the game as describe in the assignment.
+    void printNumberOfTurns(); //Print the number of played turns at any given time.
+    bool isGameOver();
+    void turn(Player& other);
+	int haveMostOfCard(int notInclude);
+    void brief( string name1, string name2, int value);
+	//~Game();
 
-//	void init();
-//	void play();
-//	void printState();        //Print the state of the game as described in the assignment.
-//	void printWinner();       //Print the winner of the game as describe in the assignment.
-//    void printNumberOfTurns(); //Print the number of played turns at any given time.
-//    bool isGameOver();
-//    void turn(Player& other);
-//	int haveMostOfCard();
-//    void brief( string name1, string name2, int value);
-//    void printInitGame();
-};
+	};
 
 #endif

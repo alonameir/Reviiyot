@@ -16,7 +16,7 @@ Hand::Hand() : hand() {}
 bool Hand::search(Card &value) {
     bool isFound = false;
     for (list<Card *>::iterator it = (hand).begin(); (!isFound) && it != hand.end(); ++it) {
-        if (isEqual(**it, value)) {
+        if (isEqual(*(*it), value)) {
             isFound = true;
         }
     }
@@ -36,12 +36,10 @@ vector<Card *> Hand::give(int val) {
     for (list<Card *>::iterator it = hand.begin(); it != hand.end();) {
         tmp = (*it)->firstLetter();
         if ((tmp) == val) {
-            Card *toPush;
-            toPush = (*it);
+            Card *toPush = (*it);
             ans.push_back(toPush);
             it = hand.erase(it);
             bool a = removeCard(*toPush);
-//            delete(*toPush);//CHECK
         } else
             ++it;
     }
@@ -85,8 +83,7 @@ void Hand::delFour() {
             }
         }
     }
-};
-
+}
 
 int Hand:: findMostAppeared(){
     int highestval=0;
@@ -130,11 +127,11 @@ int Hand::getMaxVal(){
 
 int Hand::getMinVal(){
     Card* curr= hand.front();
-    string* s= new string (curr->toString());
+    string *s= new string (curr->toString());
     int ret=changeToInt(*s);
-    delete (curr);
-    delete (s);
-    return (ret);
+    //delete curr;
+    delete s;
+    return ret;
 }
 
 bool Hand:: addCard(Card &card){
@@ -148,6 +145,7 @@ bool Hand:: addCard(Card &card){
         }
         if (!isAdd) {
             hand.push_back(&card);
+            isAdd = true;
         }
     }
     return isAdd;
@@ -189,10 +187,14 @@ int Hand::findLeastAppeared() {
             }
         }
 
-    }
-    return minVal;
-}
+        if (minSum > counter) {
+            minSum = counter;
+            minVal = (**it).firstLetter();
 
+        }
+        return minVal;
+    }
+}
 
 int Hand::comparTo(Card &card1, Card &card2) {
     int ans = -2;
