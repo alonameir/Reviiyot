@@ -28,7 +28,6 @@ void Game:: init(){
 }
 
 void Game:: play(){
-    printState();
     while(!(isGameOver())){
         numOfTurns=numOfTurns+1;
         turn(*(players[currPlayer]));
@@ -170,9 +169,8 @@ void Game:: brief(string name1, string name2, int value){
     whoToAsk=s;
 }
 
-
 Game::Game(char *configurationFile)
-        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(1), currPlayer(0) {
+        : deck(), players(), whoToAsk(""), verbal(-1), numOfTurns(0), currPlayer(0) {
     ifstream toRead(string() + configurationFile);
     string content((std::istreambuf_iterator<char>(toRead)),
                    (std::istreambuf_iterator<char>()));
@@ -192,23 +190,23 @@ Game::Game(char *configurationFile)
             } else if (parameter == 1) {//reading highest numeric value parameter
                 n = stoi(line);
             } else if (parameter == 2) {//reading the deck parameter
-                deck = Deck(line, n);
+                    deck.buildDeck(line,n);
             } else { // (parameter==3)reading the players
                 int pos = 0;
                 while (!line.empty()) {
                     vector<string> s(split(line, ' '));
                     int strategy = stoi(s[1]);
                     if (strategy == 1) {
-                        PlayerType1* tmp=new PlayerType1 (s[0], pos);
+                        PlayerType1 *tmp = new PlayerType1(s[0], pos);
                         players.push_back(tmp);
                     } else if (strategy == 2) {
-                        PlayerType2* tmp=new PlayerType2 (s[0], pos);
+                        PlayerType2 *tmp = new PlayerType2(s[0], pos);
                         players.push_back(tmp);
                     } else if (strategy == 3) {
-                        PlayerType3* tmp=new PlayerType3 (s[0], pos);
+                        PlayerType3 *tmp = new PlayerType3(s[0], pos);
                         players.push_back(tmp);
                     } else { // (strategy==4)
-                        PlayerType4* tmp=new PlayerType4 (s[0], pos);
+                        PlayerType4 *tmp = new PlayerType4(s[0], pos);
                         players.push_back(tmp);
                     }
                     pos++;

@@ -19,11 +19,11 @@ private:
 
 public:
 	Deck();
-	~Deck();
+	virtual ~Deck();
 	//Deck(const Deck& other);
 	//deque<Card*> getDeck() const;
 	Card* fetchCard();
-	Deck(string &line, int n);
+    void buildDeck(string &line, int n);
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();

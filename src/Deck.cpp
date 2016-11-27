@@ -8,7 +8,7 @@ using namespace std;
 
 Deck::Deck(): deck(){}
 
-Deck::Deck(string &line, int n) : deck(){
+void Deck::buildDeck(string &line, int n) {
     string temp;
     for (int i = 0; i < line.size(); i = i + 1) {
         char c = line.at((unsigned long) i);
@@ -93,8 +93,7 @@ bool Deck::isFigure(string someCard) {
     return someCard.at(0) == 'J' || someCard.at(0) == 'Q' || someCard.at(0) == 'K' || someCard.at(0) == 'A';
 }
 
-Deck::Deck(): deck(){};
-
+//Returns the top card of the deck and remove it rom the deck
 Card* Deck::fetchCard() {
     if (isEmpty())
         throw "Empty deck";
@@ -119,7 +118,7 @@ Deck::~Deck(){
     for (deque<Card *>::iterator it=deck.begin(); it!=deck.end(); ++it){
         delete (*it);
     }
-    deck.clear();
+    //deck.clear();
 }
 
 int Deck::getNumberOfCards() {
@@ -131,6 +130,7 @@ int Deck::getNumberOfCards() {
 bool Deck::isEmpty() {
     return getNumberOfCards() == 0;
 }
+
 //
 //Deck::Deck(const Deck &other) {
 //

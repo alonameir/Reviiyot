@@ -38,7 +38,7 @@ class FigureCard : public Card {
 private:
 	Figure figure;
 public:
-    ~FigureCard();
+    virtual ~FigureCard();
     FigureCard(Shape shape, Figure figure);
 	virtual string toString() override;
 	virtual int firstLetter();
@@ -50,7 +50,7 @@ class NumericCard : public Card {
 private:
 	int number;
 public:
-    ~NumericCard();
+    virtual ~NumericCard();
     NumericCard(Shape shape, int number);
 	virtual string toString() override;
 	virtual int firstLetter();

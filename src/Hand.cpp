@@ -16,19 +16,19 @@ Hand::Hand() : hand() {}
 bool Hand::search(Card &value) {
     bool isFound = false;
     for (list<Card *>::iterator it = (hand).begin(); (!isFound) && it != hand.end(); ++it) {
-        if (isEqual(**it, value)) {
+        if (isEqual(*(*it), value)) {
             isFound = true;
         }
     }
     return isFound;
 }
 
-//Hand::~Hand() {
-//    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
-//        delete (**it);
-//    }
-//    hand.clear();
-//}
+Hand::~Hand() {
+    for (list<Card *>::iterator it = hand.begin(); it != hand.end();++it) {
+        delete (*it);
+    }
+    hand.clear();
+}
 
 vector<Card *> Hand::give(int val) {
     vector<Card *> ans;
@@ -84,7 +84,6 @@ void Hand::delFour() {
         }
     }
 }
-
 
 int Hand:: findMostAppeared(){
     int highestval=0;

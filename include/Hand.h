@@ -19,7 +19,7 @@ protected:
 
 public:
     Hand();
-  //  ~Hand();
+  	~Hand();
 	bool addCard(Card& card);
 	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand
