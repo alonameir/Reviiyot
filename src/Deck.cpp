@@ -12,7 +12,7 @@ void Deck::buildDeck(string &line, int n) {
     string temp;
     for (int i = 0; i < line.size(); i = i + 1) {
         char c = line.at((unsigned long) i);
-        if ((i == line.size()-1) && (c != ' ') ){
+        if ((i == line.size()-1) && (c != ' ') && (c!= '\n') && (c!='\r') ){
             temp.push_back(c);
             if (isFigure(temp)) {
                 FigureCard* toPut=bulidFigureCard(temp);
@@ -23,7 +23,7 @@ void Deck::buildDeck(string &line, int n) {
                 deck.push_back(toPut);
             }
         } else {
-            if (c != ' ') {
+            if ((c != ' ') && (c!= '\n') && (c!='\r')){
                 temp.push_back(c);
             } else {
                 if (isFigure(temp)) {

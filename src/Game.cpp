@@ -181,39 +181,41 @@ Game::Game(char *configurationFile)
 
     while (parameter <= 3) {
         getline(f, line);
-        if ((!line.empty()) && line.at(0) != '#') {
-            if (parameter == 0) {//reading verbal parameter
-                if (line.at(0) == '0')
-                    verbal = 0;
-                else
-                    verbal = 1;
-            } else if (parameter == 1) {//reading highest numeric value parameter
-                n = stoi(line);
-            } else if (parameter == 2) {//reading the deck parameter
-                    deck.buildDeck(line,n);
-            } else { // (parameter==3)reading the players
-                int pos = 0;
-                while (!line.empty()) {
-                    vector<string> s(split(line, ' '));
-                    int strategy = stoi(s[1]);
-                    if (strategy == 1) {
-                        PlayerType1 *tmp = new PlayerType1(s[0], pos);
-                        players.push_back(tmp);
-                    } else if (strategy == 2) {
-                        PlayerType2 *tmp = new PlayerType2(s[0], pos);
-                        players.push_back(tmp);
-                    } else if (strategy == 3) {
-                        PlayerType3 *tmp = new PlayerType3(s[0], pos);
-                        players.push_back(tmp);
-                    } else { // (strategy==4)
-                        PlayerType4 *tmp = new PlayerType4(s[0], pos);
-                        players.push_back(tmp);
+        if (!line.empty()){
+            if ((line.at(0) != '#') && (line.substr(0, 2) != "\n") && (line.substr(0, 2)!="\r")) {
+                if (parameter == 0) {//reading verbal parameter
+                    if (line.at(0) == '0')
+                        verbal = 0;
+                    else
+                        verbal = 1;
+                } else if (parameter == 1) {//reading highest numeric value parameter
+                    n = stoi(line);
+                } else if (parameter == 2) {//reading the deck parameter
+                    deck.buildDeck(line, n);
+                } else { // (parameter==3)reading the players
+                    int pos = 0;
+                    while (!line.empty()) {
+                        vector<string> s(split(line, ' '));
+                        int strategy = stoi(s[1]);
+                        if (strategy == 1) {
+                            PlayerType1 *tmp = new PlayerType1(s[0], pos);
+                            players.push_back(tmp);
+                        } else if (strategy == 2) {
+                            PlayerType2 *tmp = new PlayerType2(s[0], pos);
+                            players.push_back(tmp);
+                        } else if (strategy == 3) {
+                            PlayerType3 *tmp = new PlayerType3(s[0], pos);
+                            players.push_back(tmp);
+                        } else { // (strategy==4)
+                            PlayerType4 *tmp = new PlayerType4(s[0], pos);
+                            players.push_back(tmp);
+                        }
+                        pos++;
+                        getline(f, line);
                     }
-                    pos++;
-                    getline(f, line);
                 }
+                parameter++;
             }
-            parameter++;
         }
     }
 }
@@ -233,6 +235,11 @@ vector<string> Game::split(const string &s, char delim) {
     return elems;
 }
 
-//Game::Game(const Game &other) {
-//
-//}
+Game:: ~Game(){
+    //delete deck;
+    int size= (int) ((players.size()) - 1);
+    for(int i=size; i>=0; i--){
+        delete ((players[i]));
+    }
+    players.clear();
+}

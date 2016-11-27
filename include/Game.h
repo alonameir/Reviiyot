@@ -37,7 +37,7 @@ private:
     void turn(Player& other);
 	int haveMostOfCard(int notInclude);
     void brief( string name1, string name2, int value);
-	//~Game();
+	~Game();
 
 	};
 
