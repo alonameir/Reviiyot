@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     Game game = Game(configurationFile);
 	game.init();
  	Game initializedGame = game;
-   initializedGame.printState();
+    initializedGame.printState();
  	game.play();
 
 	cout << std::endl;

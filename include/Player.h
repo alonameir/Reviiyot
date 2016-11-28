@@ -19,15 +19,11 @@ public:
 	Player(string _name, int _position);
 	Player(const Player& other);
 	string getName();   //Returns the name of the player
-	int getPosition();
 	int exchange(int value, Player& other);
     int myPosition();
-    //string toString();
 	virtual int whatToAsk()=0;
 	virtual int getType()=0;
 	virtual int whoToAsk(int numOfPlayers)=0;
-//	virtual Player* clone()=0;
-	virtual void setNextPos(int pos)=0;
 };
 
 class PlayerType1 : public Player {  //For strategy 1
@@ -37,8 +33,6 @@ public:
 	int whatToAsk();
 	int getType();
 	int whoToAsk(int numOfPlayers);
-//	virtual Player* clone();
-	virtual void setNextPos(int pos);
 
 };
 
@@ -48,8 +42,6 @@ public:
     int whatToAsk();
 	int getType();
 	int whoToAsk(int numOfPlayers);
-//	virtual Player* clone();
-	virtual void setNextPos(int pos);
 	PlayerType2(const Player& other);
 
 };
@@ -62,8 +54,6 @@ public:
     int whoToAsk(int numOfPlayers);
     int whatToAsk();
 	int getType();
-//	virtual Player* clone();
-	void setNextPos(int pos);
 	PlayerType3(const Player& other);
 
 };
@@ -76,8 +66,6 @@ public:
     int whoToAsk(int numOfPlayers);
     int whatToAsk();
 	int getType();
-//	virtual Player* clone();
-	virtual void setNextPos(int pos);
 	PlayerType4(const Player& other);
 
 

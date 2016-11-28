@@ -34,10 +34,6 @@ int Player:: myPosition(){
     return position;
 }
 
-int Player::getPosition() {
-    return position;
-}
-
 Player::Player(const Player &other): Hand(other), name(other.name), position(other.position) {}
 
 PlayerType1 :: PlayerType1(string _name, int _position): Player(_name, _position){}
@@ -55,21 +51,11 @@ int PlayerType1 :: whoToAsk(int numOfPlayers){
     return -1;
 }
 
-//Player *PlayerType1::clone() {
-//    Player* tmp= new PlayerType1(this->getName(), this->getPosition());
-//    return tmp;
-//}
-
-void PlayerType1::setNextPos(int pos) {}
-
 PlayerType1::PlayerType1(const Player &other) : Player(other) {}
 
 
 PlayerType2 :: PlayerType2(string _name, int _position): Player(_name, _position){}
 
-//Player *PlayerType2::clone() {
-//    return new PlayerType2(this->getName(), this->getPosition());
-//}
 
 int  PlayerType2 :: whatToAsk(){
     int toAsk= findLeastAppeared();
@@ -83,8 +69,6 @@ int PlayerType2 :: getType(){
 int PlayerType2 :: whoToAsk(int numOfPlayers){
     return -1;
 }
-
-void PlayerType2::setNextPos(int pos) {}
 
 PlayerType2::PlayerType2(const Player &other) : Player(other) {}
 
@@ -117,16 +101,6 @@ int PlayerType3 :: getType(){
     return 3;
 }
 
-//Player *PlayerType3::clone() {
-//    Player* tmp= new PlayerType3(this->getName(), this->getPosition());
-//    tmp->setNextPos(nextPosition);
-//    return tmp;
-//}
-
-void PlayerType3::setNextPos(int pos) {
-    nextPosition=pos;
-}
-
 PlayerType3::PlayerType3(const Player &other) : Player(other) {}
 
 PlayerType4 :: PlayerType4(string _name, int _position): Player(_name, _position){
@@ -157,16 +131,4 @@ int PlayerType4 :: getType(){
     return 4;
 }
 
-void PlayerType4::setNextPos(int pos) {
-    nextPosition=pos;
-}
-
-PlayerType4::PlayerType4(const Player& other): Player(other) {
-    //nextPosition=other.nextPosition;
-}
-//
-//Player *PlayerType4::clone() {
-//    Player* tmp= new PlayerType3(this->getName(), this->getPosition());
-//    tmp->setNextPos(nextPosition);
-//    return tmp;
-//}
+PlayerType4::PlayerType4(const Player& other): Player(other) {}
