@@ -252,3 +252,10 @@ Game::Game(const Game &other) :
     }
 }
 
+Game::~Game() {
+    for (int i=0; i< players.size(); i++){
+        delete players[i];
+    }
+
+}
+
