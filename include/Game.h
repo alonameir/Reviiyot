@@ -20,14 +20,13 @@ private:
     int verbal;
     int n;
     string whoToAsk;
-    string initGame;
 
     void split(const string &s, char delim, vector<string> &elems);
     vector<string> split(const string &s, char delim);
 
 	public:
 	Game(char* configurationFile);
-    //Game (const Game& other);
+    Game (const Game& other);
 	void init();
 	void play();
 	void printState();        //Print the state of the game as described in the assignment.

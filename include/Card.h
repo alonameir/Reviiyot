@@ -31,6 +31,7 @@ public:
     const Shape getShapeCopy() const;
 	virtual int firstLetter()=0;
 	Card(const Card& other);
+	//virtual Card&operator=(const Card& other);
 };
 
 class FigureCard : public Card {
@@ -39,11 +40,13 @@ private:
 public:
     virtual ~FigureCard();
 	const Figure getFigureCopy() const;
-    FigureCard(Shape shape, Figure figure);
+	//FigureCard&operator=(const FigureCard& other);
+
+	FigureCard(Shape shape, Figure figure);
 	virtual string toString() override;
 	virtual int firstLetter();
 	FigureCard(const FigureCard& other);
-    Card* copy();
+    virtual Card* copy();
 };
 
 class NumericCard : public Card {
@@ -51,12 +54,14 @@ private:
 	int number;
 public:
     virtual ~NumericCard();
-    NumericCard(Shape shape, int number);
+	//NumericCard&operator=(const NumericCard& other);
+
+	NumericCard(Shape shape, int number);
 	virtual string toString() override;
 	virtual int firstLetter();
 	const int getNumericCopy() const;
 	NumericCard(const NumericCard& other);
-    Card* copy();
+    virtual Card* copy();
 };
 
 #endif
