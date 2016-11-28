@@ -77,7 +77,7 @@ void Game::printState() {
         for (int i = 0; i < players.size(); i++) {
             cout << players[i]->getName() << ": " << players[i]->toString() << endl;
         }
-    } else if ((isGameOver()) || (numOfTurns == 1)) {
+    } else if ((isGameOver()) || (numOfTurns == 0)) {
         cout << "Deck: " << deck.toString() << endl;
         for (int i = 0; i < players.size(); i++) {
             cout << players[i]->getName() << ": " << players[i]->toString() << endl;
