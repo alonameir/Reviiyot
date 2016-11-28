@@ -10,21 +10,15 @@
 #include "Hand.h"
 #include "Deck.h"
 #include "Player.h"
+#include <list>
 #include "Card.h"
 using namespace std;
 
-Player::Player(string _name, int _position): name(_name), position(_position){}
+Player::Player(string _name, int _position): name(_name), position(_position) {}
 
 string Player:: getName(){
     return name;
 }
-
-//string Player::toString(){
-//    string s=getName();
-//    s.append(" ");
-//    s.append(to_string(position));
-//    return s;
-//}
 
 int Player:: exchange(int value, Player& other){
     vector <Card*> gave = other.give(value);
@@ -40,6 +34,7 @@ int Player:: myPosition(){
     return position;
 }
 
+Player::Player(const Player &other): Hand(other), name(other.name), position(other.position) {}
 
 PlayerType1 :: PlayerType1(string _name, int _position): Player(_name, _position){}
 
@@ -56,8 +51,11 @@ int PlayerType1 :: whoToAsk(int numOfPlayers){
     return -1;
 }
 
+PlayerType1::PlayerType1(const Player &other) : Player(other) {}
+
 
 PlayerType2 :: PlayerType2(string _name, int _position): Player(_name, _position){}
+
 
 int  PlayerType2 :: whatToAsk(){
     int toAsk= findLeastAppeared();
@@ -72,6 +70,7 @@ int PlayerType2 :: whoToAsk(int numOfPlayers){
     return -1;
 }
 
+PlayerType2::PlayerType2(const Player &other) : Player(other) {}
 
 
 PlayerType3 :: PlayerType3(string _name, int _position): Player(_name, _position){
@@ -102,7 +101,7 @@ int PlayerType3 :: getType(){
     return 3;
 }
 
-
+PlayerType3::PlayerType3(const Player &other) : Player(other) {}
 
 PlayerType4 :: PlayerType4(string _name, int _position): Player(_name, _position){
     if (_position==0)
@@ -131,3 +130,5 @@ int PlayerType4:: whoToAsk(int numOfPlayers){
 int PlayerType4 :: getType(){
     return 4;
 }
+
+PlayerType4::PlayerType4(const Player& other): Player(other) {}

@@ -19,8 +19,22 @@ Card::Card() {
     shape = Diamond;
 }
 
-//const Shape Card::getShape() const {
-//    return shape;
+const Shape Card::getShapeCopy() const{
+    if (shape==Diamond)
+        return Diamond;
+    else if (shape==Spade)
+        return Spade;
+    else if (shape==Heart)
+        return Heart;
+    return Club;
+}
+
+Card::Card(const Card &other): shape(other.getShapeCopy()) {}
+
+//Card &Card::operator=(const Card &other) {
+//    Card tmp;
+//    tmp.shape=other.getShapeCopy();
+//    return tmp;
 //}
 
 //void Card::setShape(Shape other) {
@@ -92,9 +106,28 @@ int FigureCard::firstLetter() {
     return ans;
 }
 
-//Figure FigureCard::getFigure() const {
-//    return figure;
+FigureCard::FigureCard(const FigureCard &other): Card(other.getShapeCopy()), figure(other.getFigureCopy()) {
+}
+
+const Figure FigureCard::getFigureCopy() const {
+    if(figure==Jack)
+        return Jack;
+    else if(figure==Queen)
+        return Queen;
+    else if(figure==King)
+        return King;
+    return Ace;
+}
+
+Card *FigureCard::copy() {
+    return new FigureCard(this->getShape(), figure);
+}
+//
+//FigureCard &FigureCard::operator=(const FigureCard &other) {
+//    FigureCard* tmp= new FigureCard(other.getShapeCopy(),other.getFigureCopy());
+//
 //}
+
 
 NumericCard::NumericCard(Shape shape, int number) : Card(shape), number(number) {};
 
@@ -125,15 +158,20 @@ string NumericCard::toString() {
     return (*str2).append(*str);
 }
 
-//Card &NumericCard::operator=(const NumericCard &other){
-//    if (&other == this)
-//        return *this;
-//    number=other.getNumber();
-//    this->setShape(other.getShape());
-//    return *this;
-//}
-//
-//const int NumericCard::getNumber() const {
-//    return number;}
+const int NumericCard:: getNumericCopy() const{
+    return number;
+}
 
+NumericCard::NumericCard(const NumericCard& other): Card(other.getShapeCopy()){
+    number=(other).getNumericCopy();
+}
+
+Card *NumericCard::copy() {
+    return new NumericCard(this->getShape(),number);
+}
+//
+//NumericCard &NumericCard::operator=(const NumericCard &other) {
+//    Card::operator=(other);
+//    this->number=other.getNumericCopy();
+//}
 

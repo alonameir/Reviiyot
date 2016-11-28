@@ -14,20 +14,18 @@ class Deck {
 private:
     deque <Card*> deck;
 	bool isFigure(string someCard);
-	FigureCard* bulidFigureCard(string s);
+    FigureCard* bulidFigureCard(string s);
     NumericCard* bulidNumericCard(string s);
 
 public:
 	Deck();
 	virtual ~Deck();
-	//Deck(const Deck& other);
-	//deque<Card*> getDeck() const;
+	Deck(const Deck& other);
 	Card* fetchCard();
     void buildDeck(string &line, int n);
 	int getNumberOfCards();
 	string toString();
 	bool isEmpty();
-
 };
 
 #endif /* DECK_H_ */

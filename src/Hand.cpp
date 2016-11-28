@@ -257,4 +257,22 @@ bool Hand::isEqual(Card &card1, Card &card2) {
 int Hand::getNumberOfCards() {
     int sum = (int) hand.size();
     return sum;
-} // Get the number of cards in hand
+}
+
+Hand::Hand(const Hand &other): hand() {
+    for (list<Card *>::const_iterator it = other.hand.begin(); it != other.hand.end(); ++it) {
+        Card* tmp2=(*it)->copy();
+        Card* tmp(tmp2);
+        hand.push_back(tmp);
+    }
+}
+
+//list<Card*>* Hand::copy(const Hand &other){
+//    list <Card*>* ans= new list <Card*>;
+//    for (list<Card *>::iterator it = hand.begin(); it != hand.end(); ++it) {
+//        Card* tmp= (**it).copy();
+//        ans.push_back(tmp);
+//    }
+//    return ans;
+//}
+// Get the number of cards in hand

@@ -26,7 +26,7 @@ private:
 
 	public:
 	Game(char* configurationFile);
-    //Game (const Game& other);
+    Game (const Game& other);
 	void init();
 	void play();
 	void printState();        //Print the state of the game as described in the assignment.
